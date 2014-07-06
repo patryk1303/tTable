@@ -1,0 +1,234 @@
+body {
+	background: none !important;
+	font-size: 9pt;
+	height: 100%;
+}
+
+div.line_info {
+	text-align: center;
+	width: 100%;
+	font-size: 12pt;
+	border: 1px solid black;
+	padding: 5px 0;
+	margin: 5px 0;
+	text-align: center;
+}
+span.line {
+	font-weight: bold;
+	font-size: 1.3em;
+	color: red;
+}
+span.stop_name {
+	font-weight: bold;
+	color: green;
+}
+span.direction_name {
+	font-weight: bold;
+	color: blue;
+}
+
+table.departures {
+	border-collapse: collapse;
+	width: 100%;
+	height: 100%;
+	font-size: 9pt;
+}
+table.departures td{
+	text-align: center;
+	padding: 2px;
+	border: 1px solid black;
+	vertical-align: top;
+}
+table.departures tr.hours {
+	height: 25px;
+}
+table.departures tr.hours td.hour{
+	vertical-align: middle;
+	font-weight: bold;
+	background-color: lightgrey;
+	
+}
+table.departures tr.hours td.hour_info {
+	width: 75px;
+}
+
+table.departures td.day_type {
+	vertical-align: middle !important;
+	font-weight: bold;
+	width: 70px;
+	background-color: lightgrey;
+}
+table.departures td.mins_text {
+	vertical-align: middle;
+	background-color: lightgrey;
+	font-variant: small-caps;
+	font-style: italic;
+	font-weight: bold;
+	width: 5px;
+}
+
+table.departures td.route {
+	vertical-align: top;
+	text-align: left;
+	font-size: 8pt;
+	width: 180px;
+	max-width: 200px;
+}
+table.departures td.route span.on_request {
+	font-weight: bold;
+	color: red;
+}
+table.departures td.infos {
+	font-family: monospace;
+	font-weight: normal !important;
+	vertical-align: top !important;
+	padding: 10px;
+	text-align: left;
+	background-color: transparent !important;
+	min-height: 100px;
+	height: 150px;
+}
+table.departures tr td.valid {
+	height: 25px !important;
+	font-size: 1.3em;
+}
+table.departures td span.starting {color: green; !important}
+table.departures td span.ending {color: red; !important}
+
+div#przebieg a {
+	color: black;
+	text-decoration: none;
+}
+div#przebieg a.current {
+	color: green;
+	font-weight: bold;
+}
+div#przebieg a:hover {
+	color: black;
+	text-decoration: underline;
+}
+span.on_request {
+	font-weight: bold !important;
+	color: red;
+	font-size: 1.2em;
+}
+span.hour {
+	font-weight: bold;
+	color: blue;
+	font-size: 1.2em;
+}
+div#directions {
+	/*padding: 10px;
+	text-align: center;
+	margin: 0 auto;*/
+}
+span.direction {
+	padding: 10px;
+	margin: 10px;
+	/*border: 1px solid black;*/
+}
+span.direction a {
+	color: black;
+	text-decoration: none;
+}
+span.direction a:hover {
+	text-decoration: underline;
+}
+
+div.other_lines {
+	margin: 10px 0;
+}
+div.other_lines a {
+	color: black;
+	text-decoration: none;
+} 
+div.other_lines a:hover {
+	text-decoration: underline;
+} 
+
+div.print a {
+	font-style: none;
+	text-decoration: none;
+	color: black;
+}
+div.print a:hover {
+	text-decoration: underline;
+}
+
+div.direction1 {
+	width: 47%;
+	float: left;
+	border-right: 1px dotted grey;
+}
+div.direction2 {
+	width: 47%;
+	float: right;
+	border-left: 1px dotted grey;
+}
+div.direction1,div.direction2 {
+	text-align: left;
+	padding: 10px;
+}
+div.direction1 a,div.direction2 a {
+	color: black;
+	text-decoration: none;
+} 
+div.direction1 a:hover,div.direction2 a:hover {
+	text-decoration: underline;
+} 
+div.direction:first-child {
+	max-width: 100%;
+	float: left;
+}
+div.direction:last-child {
+	
+}
+
+br.clear {
+	clear: both;
+}
+
+a.depatrure {
+	padding-left: 45px;
+}
+
+hr.break_page {
+	page-break-after: always;
+}
+
+
+/* all deprartures */
+table.all_departures {
+	border-collapse: collapse;
+	width: 100%;
+}
+table.all_departures td, table.all_departures th {
+	border: 1px solid black;
+}
+table.all_departures th {
+	background-color: lightgrey;
+}
+table.all_departures td {
+	text-align: center;
+}
+table.all_departures th.all_departures_line {
+	width: 50px;
+}
+table.all_departures td.line {
+	font-weight: bold;
+	background-color: lightgrey;
+}
+table.all_departures td a {
+	color: black;
+	text-decoration: none;
+}
+table.all_departures td a.passed {
+	color: grey;
+}
+table.all_departures td a.next {
+	font-weight: bold;
+	color: #003366;
+}
+table.all_departures td a:hover {
+	text-decoration: underline;
+}

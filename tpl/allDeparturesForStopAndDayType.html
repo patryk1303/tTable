@@ -1,0 +1,66 @@
+{include 'tpl/fullStopName.html'}
+{include 'tpl/options.html'}
+{assign "ar" [$stopName[0],$stopName[1],$stopName[2],$stopName[3]]}
+
+{*$test = "AA"}
+{$test_c = $test|count}
+{for $i=0 to $test_c}
+{$test[$i]}
+{/for*}
+
+{if $wPrint==null and $notPrint==true}
+<div class="print">
+	<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
+	<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+	<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+</div>
+{/if}
+
+<div class="line_info">
+Kolejne odjazdy z przystanku<br><span class="stop_name">{call writeFullStopName}</span><br>
+w typ dnia <span class="direction_name">{$dayTypes[$wDay-1][1]}</span>
+
+</div>
+
+<table class="all_departures">
+	<thead>
+		<tr class="all_departures_header">
+			<th class="all_departures_line">Linia</th>
+			<th class="all_departures_dir">Przystanek docelowy</th>
+			<th class="all_departures_dep">Odjazd</th>
+			{*<th class="all_departures_infos">Oznaczenia</th>*}
+		</tr>
+	</thead>
+	<tbody>
+{foreach $departures as $dep}
+	{$cTime = $dep.hour|cat:":"|cat:$dep.min}
+	<tr class="depatrure">
+		<td class="line">{$dep.line}</td>
+		{assign "ar" [$dep.last_stop[0],$dep.last_stop[1],$dep.last_stop[2],$dep.last_stop[3]]}
+		<td>{call writeFullStopName}</td>
+		{*<td>{$dep.dir}</td>*}
+		<td>
+			{if $wPrint==null}
+			<a {if $currTime > $cTime|strtotime} class="passed"{elseif $nextTimeHour > $cTime|strtotime} class="next"{/if} href="?line={$dep.line}&amp;dir={$dep.dir_n}&amp;stop={$wStop}&amp;course={$dep.trip}&amp;day={$wDay}{call options}">{$cTime}</a>
+			{else}
+			{$cTime}
+			{/if}
+		</td>
+		{*<td>{$dep.info}</td>*}
+	</tr>
+	{*if $dep.info1|count > 0}
+	<tr class="depatrure">
+		<td class="line">
+			&#10551;
+		</td>
+		<td colspan="3">
+		{foreach $dep.info1 as $info}
+			{$info[0]} - {$info[1]}<br>
+		{/foreach}
+		</td>
+	</tr>
+	{/if*}
+{/foreach}
+	</tbody>
+
+</table>

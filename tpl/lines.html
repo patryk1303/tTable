@@ -1,0 +1,6 @@
+{include 'tpl/options.html'}
+<ul class="lines">
+	{foreach $lines as $line}
+		<li><a{if $wLine==$line} class="chosen"{/if} href="?line={$line}{call options}">{$line}</a></li>
+	{/foreach}
+</ul>

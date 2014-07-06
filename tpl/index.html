@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Test - ParserJazdy SQL</title>
+		<meta name="author" content="Patryk Wychowaniec">
+		{if $wPrint!="pdf" and $wPrint!="pdf5"}
+		<link rel="stylesheet" href="css/style.css" type="text/css">
+		{else}
+		<link rel="stylesheet" href="css/style-pdf.css" type="text/css">
+		{/if}
+	</head>
+	
+	<body {if $wPrint!=null}id="print"{/if}{if $wPrint=="1"} onload="window.print('')"{/if}>
+		{if $wPrint==null}
+		<div id="page">
+			<div id="header">
+				<div id="logo">
+					<a href="/parserJazdy_SQL"><img src="logo.png#" alt="MZK"></a><br>
+					Internetowy rozkład jazdy autobusów MZK Koszalin
+				</div>
+			</div>
+			<div id="lines">
+				{include "tpl/lines.html"}
+			</div>
+			<div id="main">
+		{/if}
+				{if $isNothyingSelected}
+					Obecna godzna: <span class="line">{$smarty.now}</span>
+				{/if}
+				{if $isChosenLine}
+					{*tutaj kierunki pobranej linii*}
+					{include "tpl/stopsForLine.html"}
+				{/if}
+				{if $isChosenStop}
+					{*Tutaj - odjazdy wszystkich linii we wszystkich kierunkach dla danego przystanku*}
+					{include "tpl/allLines.html"}
+				{/if}
+				{if $isChosenAllDeparturesForStopOneDay}
+					{*Tutaj - wszystkie odjazdy z przystanku dla danego typu dnia*}
+					{$notPrint = true}
+					{include "tpl/allDeparturesForStopAndDayType.html"}
+				{/if}
+				{if $isChosenAllDeparturesForStopAllDays}
+					{*Tutaj - wszystkie odjazdy z przystanku dla wszystkich typów dnia*}
+					{if $wPrint==null}
+					<div class="print">
+						<a href="?stop={$wStop}&amp;day=all&amp;print=1"><img src="img/printer-icon.png" alt="print"></a>
+						<a href="?stop={$wStop}&amp;day=all&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
+						<a href="?stop={$wStop}&amp;day=all&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a>
+					</div>
+					{/if}
+					{$notPrint = false}
+					{$i=0}
+					{foreach $departures1 as $departures}
+						{$wDay = $dayTypes[$i][0]}
+						{include "tpl/allDeparturesForStopAndDayType.html"}
+						{if ($wPrint=="pdf" or $wPrint=="pdf5")}
+						<pagebreak />
+						{/if}
+						{$i=$i+1}
+					{/foreach}
+				{/if}
+				{if $isChosenStopList}
+					{*Tutaj - lista przystanków*}
+					{include "tpl/stopList.html"}
+				{/if}
+				{if $isChosenLineAndDirection}
+					{*Tutaj wszystkie przystanki danego kierunku linii*}
+					{include "tpl/allStopsForDirection.html"}
+				{/if}
+				{if $isChosenLineDirectionAndStop}
+					{*tutaj największa magia - generowanie tabliczki przystankowej*}
+					{if $wPrint==null}
+					<div class="print">
+						<span>Wydruk całego kierunku:</span><br>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=1"><img src="img/printer-icon.png" alt="print"></a>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a>
+					</div>
+					{/if}
+					{include "tpl/timetable.html"}
+					{if $wPrint==null}
+					<div class="print">
+						<span>Wydruk obecnego przystanku:</span><br>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=1"><img src="img/printer-icon.png" alt="print"></a>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a><br>
+						<a href="?stop={$wStop}"> &rArr; Wyświetl wszystkie linie kursujące z tego przystanku</a>
+					</div>
+					{/if}
+				{/if}
+				{if $isChosenTrip}
+					{*tutaj przebieg wybranego kursu*}
+					{include "tpl/course.html"}
+				{/if}
+		{if $wPrint==null}	
+			</div>
+			<div id="footer">
+				&rArr; <a id="list_info" href="?list=1">Alfabetyczna lista przystanków</a><br>
+				&copy; 2014 Patryk Wychowaniec<br>
+				Wszelkie prawa zastrzeżone<br>
+				<a href="http://validator.w3.org/check?uri=referer">
+					<img src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Transitional" height="31" width="88">
+				</a>
+			</div>
+		</div>
+		{/if}
+	</body>
+</html>

@@ -1,0 +1,69 @@
+{if $isNothyingSelected}
+	{include "news.html"}
+{/if}
+{if $isChosenLine}
+	{*tutaj kierunki pobranej linii*}
+	{include "tpl/stopsForLine.html"}
+{/if}
+{if $isChosenStop}
+	{*Tutaj - odjazdy wszystkich linii we wszystkich kierunkach dla danego przystanku*}
+	{include "tpl/allLines.html"}
+{/if}
+{if $isChosenAllDeparturesForStopOneDay}
+	{*Tutaj - wszystkie odjazdy z przystanku dla danego typu dnia*}
+	{$notPrint = true}
+	{include "tpl/allDeparturesForStopAndDayType.html"}
+{/if}
+{if $isChosenAllDeparturesForStopAllDays}
+	{*Tutaj - wszystkie odjazdy z przystanku dla wszystkich typów dnia*}
+	{if $wPrint==null}
+	<div class="print">
+		<a href="?stop={$wStop}&amp;day=all&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
+		<a href="?stop={$wStop}&amp;day=all&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+		<a href="?stop={$wStop}&amp;day=all&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+	</div>
+	{/if}
+	{$notPrint = false}
+	{$i=0}
+	{foreach $departures1 as $departures}
+		{$wDay = $dayTypes[$i][0]}
+		{include "tpl/allDeparturesForStopAndDayType.html"}
+		{if ($wPrint=="pdf" or $wPrint=="pdf5")}
+		<pagebreak />
+		{/if}
+		{$i=$i+1}
+	{/foreach}
+{/if}
+{if $isChosenStopList}
+	{*Tutaj - lista przystanków*}
+	{include "tpl/stopList.html"}
+{/if}
+{if $isChosenLineAndDirection}
+	{*Tutaj wszystkie przystanki danego kierunku linii*}
+	{include "tpl/allStopsForDirection.html"}
+{/if}
+{if $isChosenLineDirectionAndStop}
+	{*tutaj największa magia - generowanie tabliczki przystankowej*}
+	{if $wPrint==null}
+	<div class="print">
+		<span>Wydruk całego kierunku:</span><br>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+	</div>
+	{/if}
+	{include "tpl/timetable.html"}
+	{if $wPrint==null}
+	<div class="print">
+		<span>Wydruk obecnego przystanku:</span><br>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a><br>
+		<a href="?stop={$wStop}{call options}"> &rArr; Wyświetl wszystkie linie kursujące z tego przystanku</a>
+	</div>
+	{/if}
+{/if}
+{if $isChosenTrip}
+	{*tutaj przebieg wybranego kursu*}
+	{include "tpl/course.html"}
+{/if}

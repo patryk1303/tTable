@@ -1,0 +1,15 @@
+{include 'tpl/fullStopName.html'}
+<div id="directions">
+	{$i=0}
+	{foreach $directions as $dir}
+	<div class="direction direction{$dir[1]}">
+		<span class="direction direction_name">{$dir[2]}</span><hr>
+		{foreach $stops[$i] as $stop}
+		{assign "ar" [$stop[1],$stop[2],$stop[3],$stop[4]]}
+		<a href="?line={$wLine}&amp;dir={$dir[1]}&amp;stop={$stop[0]}{call options}">{call writeFullStopName}</a><br>
+		{/foreach}
+	</div>
+	{$i=$i+1}
+	{/foreach}
+	<br class="clear">
+</div>

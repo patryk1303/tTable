@@ -1,0 +1,28 @@
+{include 'tpl/fullStopName.html'}
+{include 'tpl/options.html'}
+
+{function writeLines}
+	{$count = $stop[1]|count}
+	{$i=0}
+	{foreach $stop[1] as $s_stop}
+		{$s_stop}{if $i!=$count-1}, {/if}
+		{$i=$i+1}
+	{/foreach}
+{/function}
+
+
+<span class="list_info">Lista przystanków:</span><br>
+<div class="direction">
+{foreach $stopsAndLines as $stop}
+	{assign "ar" [$stop[0][0],$stop[0][1],$stop[0][2],$stop[0][3]]}
+	<a href="?stop={$stop[0][4]}{call options}">{call writeFullStopName}</a>
+	 ( linie: {call writeLines}).<br>
+	 &#10551; Wyświetl kolejno wszystkie kursy z przystanku: <a href="?stop={$stop[0][4]}&amp;day=all{call options}">Wszystkie dni tygodnia</a> | 
+	 {$i=0}
+	 {foreach $dayTypes as $dT}
+	 	<a href="?stop={$stop[0][4]}&amp;day={$dT[0]}{call options}">{$dT[1]}</a>{if $i<$dayTypes|count-1} |{/if}
+	 	{$i=$i+1} 
+	 {/foreach}
+	<br>
+{/foreach}
+</div>

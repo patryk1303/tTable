@@ -1,0 +1,9 @@
+{include 'tpl/fullStopName.html'}
+{include 'tpl/options.html'}
+Przebieg wybranego kursu linii <span class="line">{$wLine}</span><br>
+<div id="przebieg">
+	{foreach $course as $dep}
+	{assign "ar" [$dep[3],$dep[4],$dep[5],$dep[6]]}
+	<span class="hour">{$dep[0]}:{$dep[1]}</span> <a{if $dep[7]==$wStop} class="current"{/if} href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$dep[7]}{call options}">{call writeFullStopName}</a><br>
+	{/foreach}
+</div>
