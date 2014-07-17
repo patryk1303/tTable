@@ -217,6 +217,7 @@ if ($isChosenTrip) {
 	foreach (getCourse($wLine, $wDir, $wDay, $wCourse) as $dep) {
 		$course[] = $dep;
 	}
+	//print_r(getLastStopInTrip($wLine, $wDir, $wDay, $wCourse));
 	$tpl -> assign("course", $course);
 }
 
