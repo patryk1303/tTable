@@ -1,0 +1,103 @@
+{include 'tpl/fullStopName.html'}
+{include 'tpl/infos1.html'}
+{include 'tpl/options.html'}
+{include 'tpl/displayStopsTimetable.html'}
+{assign "ar" [$stopName[0],$stopName[1],$stopName[2],$stopName[3]]}
+{*$infosLen = $infos|strlen*}
+<div class="line_info">
+{$lang.timetable_schedule_line} <span class="line">{$wLine}</span><br>
+{$lang.timetable_deps_from_stop} <span class="stop_name">{call writeFullStopName}</span><br>
+{$lang.timetable_direction}: <span class="direction_name">{$dirName}</span>
+</div>
+<table class="departures" border="1">
+	<tr class="main_table">
+		<td rowspan="2">
+			{if $hours|count == 0 or $allMinsCount==0}
+				<table class="departures">
+					<tr>
+						<td>
+							{$lang.timetable_only_exit}
+						</td>
+					</tr>
+				</table>
+			{else}
+				{$i=0}
+				{foreach $mins as $min}
+					{if $minsCount[$i] != 0}
+						<div class="day_type">{$dayTypes[$i][1]}</div>
+						{$j=0}
+						{foreach $min as $m}
+							{if $m|count > 0}
+								<div class="hour">
+									{$hours[$j]}
+									{foreach $m as $mm}
+										{$l = $mins1[$mm[0]|intval][0]}
+										{$l = $l+45}
+										{$t = $mins1[$mm[0]|intval][1]}
+										{$t = $t+5}
+										<span class="point" style="left:{$l}px; top:{$t}px;">*</span>
+										
+										{$cTime = $hours[$j]|cat:":"|cat:$mm[0]}
+										{*passed time thanks to: http://stackoverflow.com/questions/2832467/php-how-can-i-check-if-the-current-date-time-is-past-a-set-date-time*}
+										{if $mm[4]==2}
+											{$status="starting"}
+										{elseif $mm[4]==1}
+											{$status="ending"}
+										{else}
+											{$status=""}
+										{/if}
+										
+										{$l = $mins2[$mm[0]|intval][0]}
+										{$l = $l+45}
+										{$t = $mins2[$mm[0]|intval][1]}
+										{$t = $t}
+										<a{if $currTime > $cTime|strtotime} class="passed {$status}"{elseif $nextTimeHour > $cTime|strtotime} class="next {$status}"{else} class="{$status}"{/if} href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;course={$mm[2]}&amp;day={$mm[3]}{call options}">
+											<span class="min" style="left:{$l}px; top:{$t}px;">{$mm[0]}{$mm[1]}</span>
+										</a>
+									{/foreach}
+								</div>
+							{/if}
+							{$j=$j+1}
+						{/foreach}
+						<br class="clear">
+					{/if}
+					{$i=$i+1}
+				{/foreach}
+			{/if}
+		</td>
+		
+		<td class="route_header">
+			{$lang.timetable_route}:
+		</td>
+	</tr>
+	<tr class="route">
+		<td class="route" {if $currentSigns|count > 0}rowspan="3"{else}rowspan="2"{/if}>
+			{call displayStopsTimetable}
+		</td>
+	</tr>
+	{if $currentSigns|count > 0}
+		<tr>
+			<td class="infos">
+				{call writeInfos1}
+			</td>
+		</tr>
+	{/if}
+	<tr>
+		<td class="infos ">
+			{$lang.timetable_valid} {$date}
+		</td>
+	</tr>
+</table>
+	
+{if $wPrint==null}
+	{if $otherLines|count>1}
+		<div class="other_lines">
+			<span class="info">{$lang.timetable_oth_lines}:</span><br>
+			{foreach $otherLines as $otherLine}
+			{if $otherLine[1]!=$wDir or $otherLine[0]!=$wLine}
+			<a class="depatrure" href="?line={$otherLine[0]}&amp;dir={$otherLine[1]}&amp;stop={$wStop}{call options}">{$lang.timetable_oth_line} <span class="line">{$otherLine[0]}</span> {$lang.timetable_oth_dir} <span class="direction_name">{$otherLine[2]}</span></a><br>
+			{/if}
+			{/foreach}
+		</div>
+	{/if}
+{/if}

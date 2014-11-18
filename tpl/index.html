@@ -47,8 +47,8 @@
 					{if $wPrint==null}
 					<div class="print">
 						<a href="?stop={$wStop}&amp;day=all&amp;print=1"><img src="img/printer-icon.png" alt="print"></a>
-						<a href="?stop={$wStop}&amp;day=all&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
-						<a href="?stop={$wStop}&amp;day=all&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a>
+						{*<a href="?stop={$wStop}&amp;day=all&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
+						<a href="?stop={$wStop}&amp;day=all&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a>*}
 					</div>
 					{/if}
 					{$notPrint = false}
@@ -76,8 +76,8 @@
 					<div class="print">
 						<span>Wydruk całego kierunku:</span><br>
 						<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=1"><img src="img/printer-icon.png" alt="print"></a>
-						<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
-						<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a>
+						{*<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a>*}
 					</div>
 					{/if}
 					{include "tpl/timetable.html"}
@@ -85,8 +85,8 @@
 					<div class="print">
 						<span>Wydruk obecnego przystanku:</span><br>
 						<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=1"><img src="img/printer-icon.png" alt="print"></a>
-						<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
-						<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a><br>
+						{*<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf"><img src="img/pdf-icon.png" alt="print"></a>
+						<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5"><img src="img/pdf5-icon.png" alt="print"></a>*}<br>
 						<a href="?stop={$wStop}"> &rArr; Wyświetl wszystkie linie kursujące z tego przystanku</a>
 					</div>
 					{/if}

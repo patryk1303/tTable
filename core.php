@@ -1,5 +1,18 @@
 <?php
+
+session_start();
+
 require_once 'config.php';
+
+$lang_file = "lang/lang.$lang.php";
+if (!(file_exists($lang_file)))
+	$lang_file = "lang/lang.pl.php";
+//echo $lang_file;	
+
+
+//start session variavles
+if (!isset($_SESSION['style']))
+	$_SESSION['style'] = 0;
 
 if (!isset($_GET['line']))
 	$_GET['line'] = null;
@@ -21,6 +34,10 @@ if (!isset($_GET['list']))
 	$_GET['list'] = null; 
 if (!isset($_GET['ending']))
 	$_GET['ending'] = null;
+if (isset($_GET['style'])) {
+	$_SESSION['style'] = $_GET['style'];
+	//$_GET['style'] = null;
+}
 
 $wLine = $_GET['line'];
 $wDir  = $_GET['dir'];
@@ -30,9 +47,18 @@ $wDay = $_GET['day'];
 $wPrint = $_GET['print'];
 $wList = $_GET['list'];
 $wEnding = $_GET['ending'];
+//$wStyle = $_GET['style'];
 $currUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 //$currUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]";
+//$currUrl = preg_replace("/&style=\d{1,}","",$currUrl);
 $currUrl = str_replace("&ending=1","",$currUrl);
+$currUrl = str_replace("&style=0","",$currUrl);
+$currUrl = str_replace("&style=1","",$currUrl);
+$currUrl = str_replace("&style=2","",$currUrl);
+$currUrl = str_replace("&style=3","",$currUrl);
+$currUrl = str_replace("&style=4","",$currUrl);
+$currUrl = str_replace("&style=5","",$currUrl);
+$currUrl = str_replace("&style=6","",$currUrl);
 $self = $_SERVER['PHP_SELF'];
 //echo "$self<br>";
 $self = str_replace("/index.php","",$self);
@@ -174,7 +200,8 @@ function getDepartures($line,$dir,$stop,$dayType) {
 		odjazdy.kier_id = $dirID";
 	if($wEnding==null)
 		$sql.= "AND odjazdy.stan != 1";
-	echo $sql;
+	$sql.= " ORDER BY odjazdy.min ASC";
+	//echo $sql;
 	$result = $mysqli->query($sql);
 	while($row = $result->fetch_assoc()) {
 		$deps[] = array($row['godz'],$row['min'],$row['oznaczenia'],$row['kurs_nr'],$dayType[0],$row['stan']);
@@ -205,6 +232,7 @@ function getDeparturesForHour($line,$dir,$stop,$hour,$dayType) {
 		odjazdy.kier_id = $dirID";
 	if($wEnding==null)
 		$sql.= " AND odjazdy.stan != 1";
+	$sql.= " ORDER BY odjazdy.min ASC";
 	//echo $sql;
 	$result = $mysqli->query($sql);
 	while($row = $result->fetch_assoc()) {
@@ -404,7 +432,7 @@ function getStopName($stopID) {
 	return $stopName;
 }
 
-function getInfos($line,$dirNumber) {
+/*function getInfos($line,$dirNumber) {
 	global $mysqli,$prefix;
 	$lineID = getLineID($line);
 	$dirID = getDirectionID($line, $dirNumber);
@@ -424,7 +452,7 @@ function getInfos($line,$dirNumber) {
 	}
 	return $infos;
 	//return $result->fetch_assoc()['oznaczenia'];
-}
+}*/
 
 function getInfos_1($line,$dirNumber) {
 	global $mysqli,$prefix;
@@ -490,18 +518,14 @@ function getAllDeparturesForStopAndDayType($stopID,$dayTypeID) {
 		odjazdy.oznaczenia,
 		odjazdy.kurs_nr,
 		kierunki.kierunek,
-		kierunki.nr_kier,
-		oznaczenia.oznaczenia AS ozn
+		kierunki.nr_kier
 	FROM
-		$prefix"."oznaczenia AS oznaczenia,
 		$prefix"."kierunki AS kierunki,
 		$prefix"."linie AS linie,
 		$prefix"."odjazdy AS odjazdy,
 		$prefix"."przystanki AS przystanki,
 		$prefix"."typy_dni AS typy_dni
 	WHERE
-		oznaczenia.kier_id = kierunki.id AND
-		oznaczenia.linia_id = linie.id AND
 		odjazdy.linia_id = linie.id AND
 		odjazdy.kier_id = kierunki.id AND
 		odjazdy.przyst_id = przystanki.id AND
@@ -607,6 +631,36 @@ function getCurrentSigns($infosSigns,$infos1) {
 		}
 	}
 	return $currentSigns;
+}
+
+function getLocXYForClockTimetable() {
+	$mins = array();
+	$mins2 = array();
+	
+	for($i=0;$i<60;$i++) {
+		$alfa = $i*pi()/30 - pi()/2;
+		$mins[$i][0] = floor(50*cos($alfa));
+		$mins[$i][1] = floor(50*sin($alfa));
+		
+		$mins2[$i][0] = floor(65*cos($alfa));
+		$mins2[$i][1] = floor(65*sin($alfa));
+	}
+	return array($mins,$mins2);
+}
+
+function getLocXYForClockTimetableHours() {
+	$hrs = array();
+	$hrs2 = array();
+	
+	for($i=0;$i<24;$i++) {
+		$alfa = $i*pi()/12 - pi()/2;
+		$hrs[$i][0] = floor(250*cos($alfa)) + 230;
+		$hrs[$i][1] = floor(250*sin($alfa)) + 5;
+		
+		$hrs2[$i][0] = floor(300*cos($alfa)) + 230;
+		$hrs2[$i][1] = floor(300*sin($alfa)) + 5;
+	}
+	return array($hrs,$hrs2);
 }
 
 ?>

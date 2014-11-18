@@ -19,8 +19,8 @@
 	{if $wPrint==null}
 	<div class="print">
 		<a href="?stop={$wStop}&amp;day=all&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-		<a href="?stop={$wStop}&amp;day=all&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-		<a href="?stop={$wStop}&amp;day=all&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+		{*<a href="?stop={$wStop}&amp;day=all&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+		<a href="?stop={$wStop}&amp;day=all&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}
 	</div>
 	{/if}
 	{$notPrint = false}
@@ -46,20 +46,20 @@
 	{*tutaj największa magia - generowanie tabliczki przystankowej*}
 	{if $wPrint==null}
 	<div class="print">
-		<span>Wydruk całego kierunku:</span><br>
+		<span>{$lang.print_c_dir}:</span><br>
 		<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-		<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-		<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+		{*<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}
 	</div>
 	{/if}
-	{include "tpl/timetable.html"}
+	{include "tpl/timetable_display.html"}
 	{if $wPrint==null}
 	<div class="print">
-		<span>Wydruk obecnego przystanku:</span><br>
+		<span>{$lang.print_c_stop}:</span><br>
 		<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-		<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-		<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a><br>
-		<a href="?stop={$wStop}{call options}"> &rArr; Wyświetl wszystkie linie kursujące z tego przystanku</a>
+		{*<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+		<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}<br>
+		<a href="?stop={$wStop}{call options}"> &rArr; {$lang.timetable_all_lines}</a>
 	</div>
 	{/if}
 {/if}

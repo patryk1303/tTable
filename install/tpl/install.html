@@ -1,0 +1,113 @@
+{if $step==null}
+	<h1>Witaj w instalatorze ParserJazdy</h1>
+	<p>
+		Witaj!<br>
+		Za chwilę zaczniesz instalację rozkładów jazdy!<br>
+		Przed rozpoczęciem upewnij się, że rozkłady jazdy są umieszczone w katalogu <i>/install/rozklad1</i>.<br>
+		Jeżeli wszystko jest gotowe, kliknij w poniższy przycisk:<br>
+		<a href="?step=new_database" class="button">Przygotuj bazę danych</a><br>
+		<hr>
+		Reszta kroków:<br>
+		<a href="?step=days" class="button">Dodaj typy dni</a>
+		<a href="?step=lines" class="button">Dodaj linie</a>
+		<a href="?step=directions" class="button">Dodaj kierunki linii</a>
+		<a href="?step=stops_install" class="button">Dodanie wszystkich przystanków.<br>Nie stosować podczas aktualizacji!</a>
+		<a href="?step=stops_update" class="button">Dodanie nowych przystanków.<br>Stosować podczas aktualizacji!</a>
+		<a href="?step=infos" class="button">Dodanie oznaczeń do rozkładów</a>
+		<a href="?step=deps" class="button">Dodanie odjazdów</a>
+	</p>
+{/if}
+
+{if $step=='new_database'}
+	<h1>Nowa baza danych</h1>
+	<p>
+		Powinno być OK.
+		<a href="?step=days" class="button">Dodaj typy dni</a>
+	</p>
+{/if}
+
+{if $step=='days'}
+	<h1>Typy dni</h1>
+	<p>
+		{if $day_count > 0}
+			Wydaje się, że instalacja typów dni jest niewymagana.<br>
+			Przejdź do następnego kroku:
+		{else}
+			OK.
+		{/if}
+		<a href="?step=lines" class="button">Dodaj linie</a>
+	</p>
+{/if}
+
+{if $step=='lines'}
+	<h1>Lines</h1>
+	<p>
+		Jeśli wszystko poszło OK, to dodano linie do bazy danych.<br>
+		Dodano następujące linie:<br>
+		{foreach $lines as $l}
+			{$l} 
+		{/foreach}
+		<a href="?step=directions" class="button">Dodaj kierunki linii</a>
+	</p>
+{/if}
+
+{if $step=='directions'}
+	<h1>Kierunki linii</h1>
+	<p>
+		Dodano następujące kierunki (linia ID / kierunek_nr / nazwa):<br>
+		{foreach $dirs as $dir}
+			{$dir[0]} / {$dir[1]} / {$dir[2]}<br>
+		{/foreach}
+		
+		Wybierz krok:
+		<a href="?step=stops_install" class="button">Dodanie wszystkich przystanków.<br>Nie stosować podczas aktualizacji!</a>
+		<a href="?step=stops_update" class="button">Dodanie nowych przystanków.<br>Stosować podczas aktualizacji!</a>
+	</p>
+{/if}
+
+{if $step=='stops_install'}
+	<h1>Przystanki - wszystkie</h1>
+	<p>
+		Dodano następujące przystanki:<br>
+		{foreach $stops as $stop}
+			{$stop[1]}<br>
+		{/foreach}
+		
+		Kolejny krok:
+		<a href="?step=infos" class="button">Dodanie oznaczeń do rozkładów</a>
+	</p>
+{/if}
+
+{if $step=='stops_update'}
+	<h1>Przystanki - aktualizacja nowych</h1>
+	<p>
+		Dodano następujące przystanki:<br>
+		{foreach $stops as $stop}
+			{$stop[1]}<br>
+		{/foreach}
+		
+		Kolejny krok:
+		<a href="?step=infos" class="button">Dodanie oznaczeń do rozkładów</a>
+	</p>
+{/if}
+
+{if $step=='infos'}
+	<h1>Oznaczenia do rozkładów</h1>
+	<p>
+		Powinno być OK!
+		
+		Kolejny krok:
+		<a href="?step=deps" class="button">Dodanie odjazdów</a>
+	</p>
+{/if}
+
+{if $step=='deps'}
+	<h1>Odjazdy i trasy</h1>
+	<p>
+		Dodanie odjazdów powinno być automatyczne.<br>
+		Jeżeli wszystko się dodało, to rozkład powinien być gotowy do działania!
+		
+		{*Kolejny krok:
+		<a href="?step=infos" class="button">Dodanie odjazdów</a>*}
+	</p>
+{/if}

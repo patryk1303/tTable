@@ -43,7 +43,7 @@
 			"stopName" => $stopName,
 			"dirName" => $dirName,
 			"stops" => $stops,
-			"infos" => getInfos($line, $dirNumber),
+			//"infos" => getInfos($line, $dirNumber),
 			"date" => getLineDate($line),
 			"otherLines" => $otherLines,
 			"allMinsCount" => $allMinsCount

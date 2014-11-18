@@ -2,10 +2,10 @@
 {include 'tpl/options.html'}
 {if $wPrint==null}
 <div class="print">
-	<span>Wydruk całego kierunku:</span><br>
+	<span>{$lang.print_c_dir}:</span><br>
 	<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-	<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-	<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+	{*<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+	<a href="?line={$wLine}&amp;dir={$wDir}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}
 </div>
 {/if}
 {foreach $allDepsInfo as $dep}
@@ -18,7 +18,7 @@
 	{$stopName = $dep[1].stopName}
 	{$dirName = $dep[1].dirName}
 	{$stops = $dep[1].stops}
-	{$infos = $dep[1].infos}
+	{*$infos = $dep[1].infos*}
 	{$currentSigns = $dep[2]}
 	{$date = $dep[1].date}
 	{$otherLines = ""}
@@ -29,13 +29,13 @@
 	{if $allMinsCount != 0}
 		{assign "ar" [$stopName[0],$stopName[1],$stopName[2],$stopName[3]]}
 		
-		{include "tpl/timetable.html"}
+		{include "tpl/timetable_display.html"}
 		{if $wPrint==null}
 		<div class="print">
-			<span>Wydruk obecnego przystanku:</span><br>
+			<span>{$lang.print_c_stop}:</span><br>
 			<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-			<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-			<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+			{*<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+			<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}
 		</div>
 		{/if}
 		{if $wPrint!="pdf" and $wPrint!="pdf5"}

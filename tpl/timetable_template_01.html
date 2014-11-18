@@ -1,0 +1,54 @@
+<table class="departures">
+	<tr class="hours">
+		<td class="hour hour_info" colspan="2">{$lang.timetable_hours}</td>
+		{foreach $hours as $hour}
+			<td class="hour">{$hour}</td>
+		{/foreach}
+	</tr>
+	{$i=0}
+	{$j=0}
+	{foreach $mins as $min}
+		{if $minsCount[$i] != 0}
+			<tr class="departures">
+				<td class="day_type">{$dayTypes[$i][1]}</td>
+				{if $j==0}
+					<td class="mins_text" rowspan="{$minsAndDayTypesCount}">m<br>i<br>n<br>u<br>t<br>y</td>
+				{/if}
+				{$h=0}
+				{foreach $min as $m}
+					<td>
+						{foreach $m as $mm}
+							{$cTime = $hours[$h]|cat:":"|cat:$mm[0]}
+							{*passed time thanks to: http://stackoverflow.com/questions/2832467/php-how-can-i-check-if-the-current-date-time-is-past-a-set-date-time*}
+							{if $mm[4]==2}
+								{$status="starting"}
+							{elseif $mm[4]==1}
+								{$status="ending"}
+							{else}
+								{$status=""}
+							{/if}
+							{if $wPrint==null}
+								<a{if $currTime > $cTime|strtotime} class="passed {$status}"{elseif $nextTimeHour > $cTime|strtotime} class="next {$status}"{else} class="{$status}"{/if} href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;course={$mm[2]}&amp;day={$mm[3]}{call options}">{$mm[0]}<sup>{$mm[1]}</sup></a><br>
+							{else}
+								{if $status=="starting"}
+									{$css = "color: green;"}
+									{$color = "green"}
+								{elseif $status=="ending"}
+									{$css = "color: red;"}
+									{$color = "red"}
+								{else}
+									{$css=""}
+									{$color = "black"}
+								{/if}
+								<span style="{$css}">{$mm[0]}{if $wPrint=="pdf5" and $mm[1]|strlen>=1}<br>{/if}{$mm[1]}</span><br>
+							{/if}
+						{/foreach}
+					</td>
+					{$h=$h+1}
+				{/foreach}
+			</tr>
+			{$j=$j+1}
+		{/if}
+		{$i=$i+1}
+	{/foreach}
+</table>

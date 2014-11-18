@@ -11,23 +11,23 @@
 {if $wPrint==null and $notPrint==true}
 <div class="print">
 	<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-	<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-	<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+	{*<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+	<a href="?stop={$wStop}&amp;day={$wDay}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}
 </div>
 {/if}
 
 <div class="line_info">
-Kolejne odjazdy z przystanku<br><span class="stop_name">{call writeFullStopName}</span><br>
-w typ dnia <span class="direction_name">{$dayTypes[$wDay-1][1]}</span>
+{$lang.alldeps_next_deps}<br><span class="stop_name">{call writeFullStopName}</span><br>
+{$lang.alldeps_next_daytype} <span class="direction_name">{$dayTypes[$wDay-1][1]}</span>
 
 </div>
 
 <table class="all_departures">
 	<thead>
 		<tr class="all_departures_header">
-			<th class="all_departures_line">Linia</th>
-			<th class="all_departures_dir">Przystanek docelowy</th>
-			<th class="all_departures_dep">Odjazd</th>
+			<th class="all_departures_line">{$lang.line}</th>
+			<th class="all_departures_dir">{$lang.alldeps_next_dest}</th>
+			<th class="all_departures_dep">{$lang.departure}</th>
 			{*<th class="all_departures_infos">Oznaczenia</th>*}
 		</tr>
 	</thead>

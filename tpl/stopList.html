@@ -11,13 +11,13 @@
 {/function}
 
 
-<span class="list_info">Lista przystanków:</span><br>
+<span class="list_info">{$lang.list_list}:</span><br>
 <div class="direction">
 {foreach $stopsAndLines as $stop}
 	{assign "ar" [$stop[0][0],$stop[0][1],$stop[0][2],$stop[0][3]]}
 	<a href="?stop={$stop[0][4]}{call options}">{call writeFullStopName}</a>
-	 ( linie: {call writeLines}).<br>
-	 &#10551; Wyświetl kolejno wszystkie kursy z przystanku: <a href="?stop={$stop[0][4]}&amp;day=all{call options}">Wszystkie dni tygodnia</a> | 
+	 ( {$lang.list_lines}: {call writeLines}).<br>
+	 &#10551; {$lang.list_all_deps}: <a href="?stop={$stop[0][4]}&amp;day=all{call options}">{$lang.list_everyday}</a> | 
 	 {$i=0}
 	 {foreach $dayTypes as $dT}
 	 	<a href="?stop={$stop[0][4]}&amp;day={$dT[0]}{call options}">{$dT[1]}</a>{if $i<$dayTypes|count-1} |{/if}

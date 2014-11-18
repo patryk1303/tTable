@@ -17,7 +17,8 @@
 {if $wPrint==null}
 <div id="header">
 <a href="{$self}/?{call options}"><img src="logo.png" alt="MZK"></a><br>
-<h1>Internetowy rozkład jazdy autobusów MZK Koszalin</h1>
+<h1>{*Internetowy rozkład jazdy autobusów MZK Koszalin*}
+{$lang.net_schedule}</h1>
  <div id="menu">
   {include "tpl/lines.html"}
  </div>
@@ -30,53 +31,75 @@
 </div>
 	
 <div id="left">
+
+	{*if $isChosenLineDirectionAndStop}
+	<div class="box">
+		<h2>Trasa przejazdu:</h2>
+		<p>
+			<table class="route">
+				<tr class="stops">
+					<td>
+						{call displayStopsTimetable}
+					</td>
+				</tr>
+			</table>
+		</p>
+	</div>
+	{/if*}
 	
 	<div class="box">
-		<h2>Opcje:</h2>
+		<h2>{$lang.options}:</h2>
 		<p>
 		{if $wEnding==null}
-			<a href="{$currUrl}&amp;ending=1">Pokazuj odjazdy końcowe</a>
+			<a href="{$currUrl}&amp;ending=1">{$lang.show_end}</a>
 		{else}
-			<a href="{$currUrl}">Nie pojazuj odjazdów końcowych</a>
+			<a href="{$currUrl}">{$lang.not_show_end}</a>
 		{/if}
+		<br><a href="?list=1{call options}">{$lang.stop_list}</a><br>
 		</p>
-	</div>
-
-	<div class="box">
-		<h2>Zegarek:</h2>
+		<h2>{$lang.timetable_st_info}:</h2>
 		<p>
-			Obecny dzień: <span class="direction_name">{$currTime|date_format:"%d.%m.%Y"}</span><br>
-			{$day = $currTime|date_format:"%w"}
-			{if $day==0}
-				{$dayName = "Niedziela"}
-			{elseif $day==1}
-				{$dayName = "Poniedziałek"}
-			{elseif $day==2}
-				{$dayName = "Wtorek"}
-			{elseif $day==3}
-				{$dayName = "Środa"}
-			{elseif $day==4}
-				{$dayName = "Czwartek"}
-			{elseif $day==5}
-				{$dayName = "Piątek"}
-			{elseif $day==6}
-				{$dayName = "Sobota"}
-			{/if}
-			Dzień tygodnia: <span class="stop_name">{$dayName}</span><br>
-			Godzina: <span class="line">{$currTime|date_format:"%H:%M"}</span>
+		{include 'tpl/display_timetable_style_info.html'}
 		</p>
 	</div>
 
 	<div class="box">
-		<h2>Lista przystanków: </h2>
-		<p>&rArr; <a id="list_info" href="?list=1{call options}">Alfabetyczna lista przystanków</a></p>
+		<h2>{$lang.clk_info}:</h2>
+		<p>
+			{$lang.clk_day}: <span class="direction_name">{$currTime|date_format:"%d.%m.%Y"}</span><br>
+			{$day = $currTime|date_format:"%w"}
+			{$dayName = "Test"}
+			{*if $day==0}
+				{$dayName = $lang.clk_monday}
+			{elseif $day==1}
+				{$dayName = $lang.clk_tuesday}
+			{elseif $day==2}
+				{$dayName = $lang.clk_wednesday}
+			{elseif $day==3}
+				{$dayName = $lang.clk_thursday}
+			{elseif $day==4}
+				{$dayName = $lang.clk_friday}
+			{elseif $day==5}
+				{$dayName = $lang.clk_saturday}
+			{elseif $day==6}
+				{$dayName = $lang.clk_sunday}
+			{/if*}
+			{$lang.clk_wday}: <span class="stop_name">{$dayName}</span><br>
+			{$lang.clk_hour}: <span class="line">{$currTime|date_format:"%H:%M"}</span>
+		</p>
 	</div>
+
+	{*<div class="box">
+		<h2>Lista przystanków: </h2>
+		<p>&rArr; </p>
+	</div>*}
 	
 	<div class="box">
-		<h2>Informacje: </h2>
+		<h2>{$lang.inf_inf}: </h2>
 		<p>&copy; 2014 Patryk Wychowaniec</p>
-		<p>Wszelkie prawa zastrzeżone</p>
-		<p style="font-size: 0.8em;">Design by <a href="http://www.minimalistic-design.net">Minimalistic Design</a></p>
+		<p>{$lang.inf_copy}</p>
+		<p style="font-size: 0.8em;">Design by <a href="http://www.minimalistic-design.net">Minimalistic Design</a>
+		<br>Strona korzysta z ciasteczek</p>
 	</div>
 	
 </div>

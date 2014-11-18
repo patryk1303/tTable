@@ -1,0 +1,47 @@
+{$i=0}
+{foreach $mins as $min}
+	{if $minsCount[$i] != 0}
+		<div class="day_type">{$dayTypes[$i][1]}</div>
+		{$j=0}
+		{foreach $min as $m}
+			{if $m|count > 0}
+				<div class="hour_block">
+					{$hours[$j]}
+					<sup>
+						{foreach $m as $mm}
+							{$cTime = $hours[$j]|cat:":"|cat:$mm[0]}
+							{*passed time thanks to: http://stackoverflow.com/questions/2832467/php-how-can-i-check-if-the-current-date-time-is-past-a-set-date-time*}
+							{if $mm[4]==2}
+								{$status="starting"}
+							{elseif $mm[4]==1}
+								{$status="ending"}
+							{else}
+								{$status=""}
+							{/if}
+							{if $wPrint==null}
+								<a{if $currTime > $cTime|strtotime} class="passed {$status}"{elseif $nextTimeHour > $cTime|strtotime} class="next {$status}"{else} class="{$status}"{/if} href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;course={$mm[2]}&amp;day={$mm[3]}{call options}">
+									<span>{$mm[0]}{$mm[1]}</span>
+								</a>
+							{else}
+								{if $status=="starting"}
+									{$css = "color: green;"}
+									{$color = "green"}
+								{elseif $status=="ending"}
+									{$css = "color: red;"}
+									{$color = "red"}
+								{else}
+									{$css=""}
+									{$color = "black"}
+								{/if}
+								<span style="{$css}">{$mm[0]}{$mm[1]}</span>
+							{/if}
+						{/foreach}
+					</sup>
+				</div>
+			{/if}
+			{$j=$j+1}
+		{/foreach}
+		<br class="clear">
+	{/if}
+	{$i=$i+1}
+{/foreach}

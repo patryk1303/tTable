@@ -1,6 +1,6 @@
 {include 'tpl/fullStopName.html'}
 {include 'tpl/options.html'}
-Przebieg wybranego kursu linii <span class="line">{$wLine}</span><br>
+{$lang.trip_info} <span class="line">{$wLine}</span><br>
 <div id="przebieg">
 	{foreach $course as $dep}
 	{assign "ar" [$dep[3],$dep[4],$dep[5],$dep[6]]}

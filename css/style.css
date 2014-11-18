@@ -45,7 +45,7 @@ div#lines ul li a {
 	background-color: #036;
 }
 div#lines ul li a.chosen {background-color: #f4f;}
-div#lines ul li a:hover {background-color: #369;}
+div#lines ul li a:hover, div#lines ul li a:focus {background-color: #369;}
 
 div#main {
 	border-top: 1px dotted gray;
@@ -61,7 +61,7 @@ div#footer {
 
 
 
-div#line_info {
+div.line_info {
 	border: 1px solid black;
 	padding: 10px;
 	margin: 10px;
@@ -81,38 +81,38 @@ div#line_info {
 	color: blue;
 }
 
-table#departures {
+table.departures {
 	border-collapse: collapse;
 	width: 100%;
 }
-table#departures td{
+table.departures td{
 	text-align: center;
 	padding: 2px;
 	border: 1px solid black;
 	vertical-align: top;
 }
-/*table#departures td:first-child {
+/*table.departures td:first-child {
 	vertical-align: middle !important;
 	font-weight: bold;
 	width: 150px;
 	background-color: lightgrey;
 }*/
-table#departures tr.hours {
+table.departures tr.hours {
 	height: 25px;
 }
-table#departures tr.hours td.hour{
+table.departures tr.hours td.hour{
 	vertical-align: middle;
 	font-weight: bold;
 	/*min-width: 40px;*/
 	background-color: lightgrey;
 }
-table#departures td.day_type {
+table.departures td.day_type {
 	vertical-align: middle !important;
 	font-weight: bold;
 	width: 150px;
 	background-color: lightgrey;
 }
-table#departures td.mins_text {
+table.departures td.mins_text {
 	vertical-align: middle;
 	background-color: lightgrey;
 	font-variant: small-caps;
@@ -120,24 +120,24 @@ table#departures td.mins_text {
 	font-weight: bold;
 	width: 30px;
 }
-table#departures td a{
+table.departures td a{
 	color: black;
 	padding: 1px;
 	margin: 1px;
 	border: 1px solid transparent;
 	text-decoration: none;
 }
-table#departures td a.passed {
+table.departures td a.passed {
 	color: grey;
 }
-table#departures td a.next {
+table.departures td a.next {
 	font-weight: bold;
 	color: #003366;
 }
-table#departures td a:hover{
+table.departures td a:hover{
 	border: 1px solid black;
 }
-table#departures td.route {
+table.departures td.route {
 	vertical-align: top !important;
 	font-weight: normal !important;
 	text-align: left;
@@ -146,33 +146,33 @@ table#departures td.route {
 	/*min-width: 250px !important;*/
 	width: 350px !important;
 }
-table#departures td.pdf {
+table.departures td.pdf {
 	vertical-align: top !important;
 	text-align: left;
 	font-size: 10pt;
 	width: 350px !important;
 }
-table#departures td.route a, table#departures td.route span{
+table.departures td.route a, table.departures td.route span{
 	font-weight: normal !important;
 	font-size: 0.7em;
 	padding-left: 10px;
 	border: none !important;
 }
-table#departures td.route span.on_request {
+table.departures td.route span.on_request {
 	font-weight: bold !important;
 	color: red;
 	font-size: 1.2em !important;
 	padding-left: 0;
 }
-table#departures td.pdf span{
+table.departures td.pdf span{
 	font-weight: normal !important;
 	padding-left: 20px;
 	border: none !important;
 }
-table#departures td.route a:hover{
+table.departures td.route a:hover{
 	text-decoration: underline;
 }
-table#departures td.route a.current, table#departures td.route span.current {
+table.departures td.route a.current, table.departures td.route span.current {
 	color: green;
 	font-weight: bold !important;
 	padding-left: 0px;
@@ -180,7 +180,7 @@ table#departures td.route a.current, table#departures td.route span.current {
 td.pdf span.current {
 	color: green !important;
 }
-table#departures td.infos {
+table.departures td.infos {
 	font-family: monospace;
 	font-weight: normal !important;
 	vertical-align: top !important;
@@ -190,7 +190,7 @@ table#departures td.infos {
 	min-height: 100px;
 	height: 150px;
 }
-table#departures tr:last-child td {
+table.departures tr:last-child td {
 	height: 25px !important;
 	font-size: 1.3em;
 }
@@ -236,14 +236,14 @@ span.direction a:hover {
 	text-decoration: underline;
 }
 
-div#other_lines {
+div.other_lines {
 	margin: 10px 0;
 }
-div#other_lines a {
+div.other_lines a {
 	color: black;
 	text-decoration: none;
 } 
-div#other_lines a:hover {
+div.other_lines a:hover {
 	text-decoration: underline;
 } 
 
@@ -309,37 +309,37 @@ a#list_info:hover {
 
 
 /* all deprartures */
-table#all_departures {
+table.all_departures {
 	border-collapse: collapse;
 	width: 100%;
 }
-table#all_departures td, table#all_departures th {
+table.all_departures td, table.all_departures th {
 	border: 1px solid black;
 }
-table#all_departures th {
+table.all_departures th {
 	background-color: lightgrey;
 }
-table#all_departures td {
+table.all_departures td {
 	text-align: center;
 }
-table#all_departures th#all_departures_line {
+table.all_departures th.all_departures_line {
 	width: 50px;
 }
-table#all_departures td.line {
+table.all_departures td.line {
 	font-weight: bold;
 	background-color: lightgrey;
 }
-table#all_departures td a {
+table.all_departures td a {
 	color: black;
 	text-decoration: none;
 }
-table#all_departures td a.passed {
+table.all_departures td a.passed {
 	color: grey;
 }
-table#all_departures td a.next {
+table.all_departures td a.next {
 	font-weight: bold;
 	color: #003366;
 }
-table#all_departures td a:hover {
+table.all_departures td a:hover {
 	text-decoration: underline;
 }

@@ -1,0 +1,54 @@
+{include 'tpl/fullStopName.html'}
+{include 'tpl/infos1.html'}
+{include 'tpl/options.html'}
+{include 'tpl/displayStopsTimetable.html'}
+{assign "ar" [$stopName[0],$stopName[1],$stopName[2],$stopName[3]]}
+
+
+<table class="departures">
+	<tr class="header">
+		<td class="route">{$lang.timetable_route}</td>
+		<td class="stop_info">
+			<div class="line_box">{$wLine}</div>
+			<div class="dir_box box"><span class="txt">{$lang.timetable_direction}</span><span class="val">{$dirName}</span></div>
+			<div class="stop_box box"><span class="txt">{$lang.timetable_deps_from_stop}</span><span class="val">{call writeFullStopName}</span></div>
+		</td>
+	</tr>
+	<tr class="main_table">
+		<td class="route">
+			{call displayStopsTimetable}
+		</td>
+		<td>
+			
+			{if $hours|count == 0 or $allMinsCount==0}
+				<table class="departures">
+					<tr>
+						<td>
+							{$lang.timetable_only_exit}
+						</td>
+					</tr>
+				</table>
+			{else}
+				{include "tpl/timetable_template_display_style.html"}
+			{/if}
+			
+			{if $currentSigns|count > 0}
+				<div class="infos">{call writeInfos1}</div>
+			{/if}
+			<div class="valid">{$lang.timetable_valid} {$date}</div>
+		</td>
+	</tr>
+</table>
+
+{if $wPrint==null}
+	{if $otherLines|count>1}
+		<div class="other_lines">
+			<span class="info">{$lang.timetable_oth_lines}:</span><br>
+			{foreach $otherLines as $otherLine}
+			{if $otherLine[1]!=$wDir or $otherLine[0]!=$wLine}
+			<a class="depatrure" href="?line={$otherLine[0]}&amp;dir={$otherLine[1]}&amp;stop={$wStop}{call options}">{$lang.timetable_oth_line} <span class="line">{$otherLine[0]}</span> {$lang.timetable_oth_dir} <span class="direction_name">{$otherLine[2]}</span></a><br>
+			{/if}
+			{/foreach}
+		</div>
+	{/if}
+{/if}

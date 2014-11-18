@@ -6,8 +6,10 @@ require_once 'config.php';
 require_once 'core.php';
 require_once 'smarty/Smarty.class.php';
 require_once 'prepareSmartyTimetable.php';
+require_once $lang_file;
 
 $tpl = new Smarty();
+$tpl -> assign("lang", $lang);
 $tpl -> assign("wLine", $wLine);
 $tpl -> assign("wDir", $wDir);
 $tpl -> assign("wStop", $wStop);
@@ -16,6 +18,7 @@ $tpl -> assign("wDay", $wDay);
 $tpl -> assign("wPrint", $wPrint);
 $tpl -> assign("wList", $wList);
 $tpl -> assign("wEnding", $wEnding);
+//$tpl -> assign("wStyle", $wStyle);
 $tpl -> assign("currUrl", $currUrl);
 $tpl -> assign("self", $self);
 
@@ -47,6 +50,13 @@ $tpl -> assign('isChosenTrip',$isChosenTrip);
 
 $currTime = time();
 $tpl -> assign("currTime",$currTime);
+
+$clockMins = getLocXYForClockTimetable();
+$clockHrs = getLocXYForClockTimetableHours();
+$tpl -> assign('mins1',$clockMins[0]);
+$tpl -> assign('mins2',$clockMins[1]);
+$tpl -> assign('hrs1',$clockHrs[0]);
+$tpl -> assign('hrs2',$clockHrs[1]);
 
 //Pobranie kierunków i przystanków tych kierunków wybranej linii
 if ($isChosenLine) {
@@ -204,7 +214,7 @@ if ($isChosenLineDirectionAndStop) {
 	$tpl -> assign("stopName", $ret['stopName']);
 	$tpl -> assign("dirName", $ret['dirName']);
 	$tpl -> assign("stops", $ret['stops']);
-	$tpl -> assign("infos", $ret['infos']);
+	//$tpl -> assign("infos", $ret['infos']);
 	$tpl -> assign("currentSigns", $currentSigns);
 	$tpl -> assign("date", $ret['date']);
 	$tpl -> assign("otherLines", $ret['otherLines']);
@@ -229,6 +239,7 @@ if ($wPrint == "pdf" or $wPrint == "pdf5") {
 	$pdf = $wPrint=="pdf"?
 		new mPDF('', 'A4-L', '', '', 5, 5, 15, 15):
 		new mPDF('', 'A5', '', '', 5, 5, 15, 15) ;
+	$pdf->keep_table_proportions = true;
 	//echo $html;
 	$pdf -> WriteHTML($html);
 	$pdf -> Output();

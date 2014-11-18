@@ -86,15 +86,27 @@ table.departures td.infos {
 	text-align: left;
 	background-color: transparent !important;
 	min-height: 100px;
-	height: 150px;
+	/*height: 150px;*/
 }
 table.departures tr td.valid {
 	height: 25px !important;
 	font-size: 1.3em;
 }
+table.departures table.departures {width: 100%; }
 table.departures td span.starting {color: green; !important}
 table.departures td span.ending {color: red; !important}
-
+table.departures td span.hour_block{display: block; float: left; width: 35px;}
+table.departures tr.day_name {font-size: 1.2em; vertical-align: middle;font-weight: bold;background-color: grey;}
+table.departures tr.hours td.hour, table.departures tr.hour_row td.hour{vertical-align: middle;font-weight: bold;background-color: lightgrey; width: 40px;}
+table.departures tr.hour_row td.route {  }
+table.departures tr.hour_row td.mins { padding-left: 15px; text-align: left;vertical-align: middle; }
+div.signs {
+	-moz-column-count: 3;
+	-moz-column-gap: 20px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 20px;
+}
+div.signs span {font-weight: bold; }
 div#przebieg a {
 	color: black;
 	text-decoration: none;
@@ -231,4 +243,56 @@ table.all_departures td a.next {
 }
 table.all_departures td a:hover {
 	text-decoration: underline;
+}
+
+/*clock timetable*/
+div.day_type {
+	width: 100%;
+	font-size: 20pt;
+	font-weight: bold;
+	border-bottom: 1px dotted grey;
+}
+div.hour {
+	color: black;
+	padding: 0;
+	margin: 30px;
+	font-size: 20px;
+	text-align: center;
+	width: 48px;
+	height: 48px;
+	border: 3px solid grey;
+	border-radius: 100px;
+	line-height: 48px;
+	text-align: center;
+	float: left;
+	position: relative;
+	font-weight: bold;
+}
+div.hour a {
+	text-decoration: none;
+	color: black;
+	border: none !important;
+}
+div.hour a:hover {
+	text-decoration: underline;
+	border: none !important;
+}
+div.hour div.mins {
+	position: absolute;
+}
+span.point {
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	z-index: 10;
+	color: red;
+	font-weight: bold;
+}
+span.min {
+	font-size: 12px !important;
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	z-index: 10;
+	font-weight: bold;
 }

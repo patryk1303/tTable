@@ -9,7 +9,7 @@ h2 { font: bold 1.1em Arial, Arial, Sans-Serif; padding: 0; margin: 0; }
 div#header{width:100%;overflow:hidden;background: #BBD9EE; text-align: center}
 div#header img { height: 70px; } 
 div#header h1,div#menu{width:770px;margin:0 auto;text-align:left}
-div#header h1{padding: 30px 0 20px;color: #fff}
+div#header h1{padding: 30px 0 20px;color: #fff;text-align:center;}
 
 ul.lines,ul.lines li{list-style-type:none;margin:0;padding:0}
 ul.lines{float:right;font-size: 80%}
@@ -53,10 +53,12 @@ ul.lines li.activelink a,ul.lines li.activelink a:hover{background: #FFF;color: 
 
 /*div.line_info {border: 1px solid black;padding: 10px;margin: 10px;text-align: center;}*/
 div.line_info {border: 1px solid #000;padding: 10px 0;margin: 10px 0;text-align: center;width: 100%;}
+div.line_info div.line_box {font-size: 3em; font-weight: bold; border: 1px solid black; margin: 15px; padding: 5px 20px; float: left;}
+div.line_info div.line_right {font-size: 1.3em; margin: 15px 0; padding: 5px; float: left; text-align: left;}
 span.line {font-weight: bold;font-size: 1.8em;color: red;}
 span.stop_name {font-weight: bold;color: green;}
 span.direction_name {font-weight: bold;color: blue;}
-span.on_request {font-weight: bold !important;color: red;font-size: 1.2em;}
+span.on_request {font-weight: bold !important;color: red;font-size: 1em;}
 span.hour {font-weight: bold;color: blue;font-size: 1.2em;}
 span.direction {padding: 10px;margin: 10px;}
 span.direction a {color: black;text-decoration: none;}
@@ -64,47 +66,49 @@ span.direction a:hover {text-decoration: underline;}
 
 div.direction {margin: 5px; padding: 5px; border: 1px dotted grey; float: left;}
 
-table.departures {border-collapse: collapse;width: 100%;}
-table.departures td{text-align: center;padding: 2px;border: 1px solid black;vertical-align: top;}
+
+table.departures {width: 100%;font-family: Verdana, Geneva, sans-serif;}
+table.departures td {padding: 3px;border-collapse: collapse;vertical-align:top;}
+table.departures tr.header td {vertical-align: middle;}
+table.departures tr.header td.route {text-align: center;font-size: 15pt;font-weight: bold;height: 60px;width: 300px;text-transform: uppercase;
+		letter-spacing: 3px;background-color: lightblue;border-radius: 0 0 10px 10px;}/*trasa przejazdu*/table.departures tr.main_table td.route{border-right: 1px solid lightgrey;font-size: 0.9em;}table td.route a{color: black;}table.departures tr.main_table td.route a.current{color: green;font-weight: bold;}table.departures tr.header td.stop_info {padding: 10px;background-color: lightblue;border-radius: 0 0 10px 10px;}table.departures tr.header td.stop_info div.line_box {float: left;margin: 0 10px;padding: 15px;font-size: 20pt;font-weight: bold;height: 90%;		background-color: white;border-radius: 10px;}table.departures tr.header td.stop_info div.box {overflow: auto;background-color: white;width: 75%;border-radius: 5px;margin-bottom: 5px;}table.departures tr.header td.stop_info div.box .txt{display: block;float: left;background-color: blue;color: white;width: 100px;		padding: 2px 10px;font-weight: bold;}table.departures tr.header td.stop_info div.box .val{display: block;float: left;padding: 2px 10px;font-weight: bold;}
+table.departures table.departures {border-collapse: collapse;}
+table.departures table.departures td {border: 1px solid grey;}
 table.departures tr.hours {height: 25px;}
-table.departures tr.hours td.hour{vertical-align: middle;font-weight: bold;background-color: lightgrey;}
-table.departures td.day_type {vertical-align: middle !important;font-weight: bold;width: 150px;background-color: lightgrey;}
-table.departures td.mins_text {vertical-align: middle;background-color: lightgrey;font-variant: small-caps;font-style: italic;font-weight: bold;width: 30px;}
-table.departures td a{color: black;padding: 1px;margin: 1px;border: 1px solid transparent;text-decoration: none;}
+table.departures tr.hours td.hour, table.departures tr.hour_row td.hour{vertical-align: middle;font-weight: bold;background-color: lightblue; /*width: 40px;*/}
+table.departures tr.day_name {font-size: 1.2em; vertical-align: middle;font-weight: bold;background-color: lightblue;}
+table.departures tr.hour_row td.mins { padding-left: 15px; text-align: left;vertical-align: middle; }
+table.departures td.day_type {vertical-align: middle !important;font-weight: bold;width: 50px;background-color: lightblue;text-align: left;}
+table.departures td.mins_text {vertical-align: middle;background-color: lightblue;font-variant: small-caps;font-style: italic;font-weight: bold;width: 30px;}
 table.departures td a.passed {color: grey;}
 table.departures td a.next {font-weight: bold;color: #003366;}
-table.departures td a.starting {color: green; !important}
-table.departures td a.ending {color: red; !important}
-table.departures td a:hover{border: 1px solid black;}
-table.departures td.route {vertical-align: top !important;font-weight: normal !important;text-align: left;font-size: 1.1em;background-color: transparent !important;}
-table.departures td.pdf {vertical-align: top !important;text-align: left;font-size: 10pt;width: 350px !important;}
-table.departures td.route a, table.departures td.route span{font-weight: normal !important;font-size: 0.7em;padding-left: 10px;border: none !important;}
-table.departures td.route span.on_request {font-weight: bold !important;color: red;font-size: 1.2em !important;padding-left: 0;}
-table.departures td.pdf span{font-weight: normal !important;padding-left: 20px;border: none !important;}
-table.departures td.route a:hover{text-decoration: underline;}
-table.departures td.route a.current, table.departures td.route span.current {color: green;font-weight: bold !important;padding-left: 0px;}
-td.pdf span.current {color: green !important;}
-table.departures td.infos {font-family: monospace;font-weight: normal !important;vertical-align: top !important;padding: 10px;text-align: left;background-color: transparent !important;min-height: 100px;height: 150px;}
-table.departures tr:last-child td {height: 25px !important;font-size: 1.3em;}
-table.departures td span.starting {color: green; !important}
-table.departures td span.ending {color: red; !important}
+table.departures td a.starting, table.departures span.starting {color: green; !important}
+table.departures td a.ending, table.departures span.ending {color: red; !important}
+
+div.infos {float: left;}
+div.valid {float: right;}
+
+div.signs span {font-weight: bold; }
 
 div.other_lines {margin: 10px 0px;width: 45%;float: right;}
 div.other_lines a {color: black;text-decoration: none;} 
 div.other_lines a:hover {text-decoration: underline;} 
 
-div.print {margin: 10px 0px;width: 45%;float: left;}
+div.print {margin: 10px 0px;width: 45%;/*float: left;*/}
 
 br.clear {clear: both;}
 a.depatrure {padding-left: 45px;}
 hr.break_page {page-break-before: always;}
 
-a#list_info {font-size: 1.2em;color: black;text-decoration: none;}
-a#list_info:hover {text-decoration: underline;}
+a.list_info {font-size: 1em;color: black;text-decoration: none;}
+a.list_info:hover {text-decoration: underline;}
 
 div#przebieg a {color: black;text-decoration: none;}
 div#przebieg a.current {color: green;font-weight: bold;}
 div#przebieg a:hover {color: black;text-decoration: underline;}
+
+div.hour_block {float: left;font-size: 1.5em; padding: 4px;}
+div.hour_block sup {font-size: 0.7em;}
 
 /* all deprartures */
 table.all_departures {border-collapse: collapse;width: 100%;}
@@ -120,3 +124,29 @@ table.all_departures td a:hover {text-decoration: underline;}
 
 ul { padding: 0; margin: 0;}
 li { list-style-type: none;}
+
+/*clock timetable*/
+div.day_type {width: 100%;font-size: 20pt;font-weight: bold;border-bottom: 1px dotted grey;}
+div.hour {color: black;padding: 0;margin: 30px;font-size: 40px;text-align: center;width: 98px;height: 98px;border: 3px solid grey;
+	border-radius: 100px;line-height: 98px;text-align: center;float: left;position: relative;font-weight: bold;}
+div.hour a {text-decoration: none;color: black;border: none !important;}
+div.hour a:hover {text-decoration: underline;border: none !important;}
+div.hour div.mins {position: absolute;}
+span.point {width: 6px;height: 6px;position: absolute;z-index: 10;color: red;font-weight: bold;}
+span.min {font-size: 12px !important;width: 6px;height: 6px;position: absolute;z-index: 10;font-weight: bold;}
+
+div.big_clock {
+	margin: 30px auto;
+	width:495px;
+	height: 495px;
+	border-radius: 500px;
+	color: black;
+	padding: 0;
+	font-size: 40px;
+	text-align: center;
+	border: 3px solid grey;
+	line-height: 495px;
+	text-align: center;
+	position: relative;
+	font-weight: bold;
+}

@@ -4,6 +4,7 @@ define("DB_USER", "root");
 define("DB_PASS", "qwe");
 define("DB_BASE", "parser_jazdynowy");
 
+$lang = "pl";
 $prefix = "";
 $timezone = 'Europe/Warsaw';
 date_default_timezone_set($timezone);

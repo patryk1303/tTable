@@ -1,0 +1,5 @@
+{$style = $smarty.session.style}
+<a {if $style==0 or $style>3} class="list_info" {/if} href="{$currUrl}&amp;style=0">{$lang.timetable_st_hor}</a><br>
+<a {if $style==1} class="list_info" {/if} href="{$currUrl}&amp;style=1">{$lang.timetable_st_ver}</a><br>
+<a {if $style==2} class="list_info" {/if} href="{$currUrl}&amp;style=2">{$lang.timetable_st_clk}</a><br>
+<a {if $style==3} class="list_info" {/if} href="{$currUrl}&amp;style=3">{$lang.timetable_st_ind}</a><br>

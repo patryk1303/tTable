@@ -2,10 +2,10 @@
 {include 'tpl/options.html'}
 {if $wPrint==null}
 <div class="print">
-	<span>Wydruk wszystkich linii z przystanku:</span><br>
+	<span>{$lang.print_all_lines}:</span><br>
 	<a href="?stop={$wStop}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-	<a href="?stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-	<a href="?stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+	{*<a href="?stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+	<a href="?stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}
 </div>
 {/if}
 {*if !$wStop|is_array*}
@@ -19,7 +19,7 @@
 		{$stopName = $line[2].stopName}
 		{$dirName = $line[2].dirName}
 		{$stops = $line[2].stops}
-		{$infos = $line[2].infos}
+		{*$infos = $line[2].infos*}
 		{$currentSigns = $line[3]}
 		{$date = $line[2].date}
 		{$otherLines = ""}
@@ -31,13 +31,13 @@
 		{assign "ar" [$stopName[0],$stopName[1],$stopName[2],$stopName[3]]}
 		
 		{if $allMinsCount != 0}
-			{include "tpl/timetable.html"}
+			{include "tpl/timetable_display.html"}
 			{if $wPrint==null}
 			<div class="print">
-				<span>Wydruk obecnego przystanku:</span><br>
+				<span>{$lang.print_c_stop}:</span><br>
 				<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=1{call options}"><img src="img/printer-icon.png" alt="print"></a>
-				<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
-				<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>
+				{*<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf{call options}"><img src="img/pdf-icon.png" alt="print"></a>
+				<a href="?line={$wLine}&amp;dir={$wDir}&amp;stop={$wStop}&amp;print=pdf5{call options}"><img src="img/pdf5-icon.png" alt="print"></a>*}
 			</div>
 			{/if}
 			{if $wPrint!="pdf" and $wPrint!="pdf5"}
