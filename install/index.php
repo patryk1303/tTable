@@ -49,6 +49,7 @@
 			break;
 			
 		case 'stops_install':
+			$mysqli->query("TRUNCATE `$prefix"."przystanki`");
 			$sql = prepareStopListSQL($pathToSchedule, $lines);
 			$mysqli->query($sql);
 			$stops = getStopsAndIDs();

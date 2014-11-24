@@ -2,6 +2,7 @@
 //echo $pathToSchedule;
 
 function prepareStopListSQL($path, $lines) {
+	global $prefix;
 	$stops = array();
 	$stops1 = array();
 
@@ -27,7 +28,7 @@ function prepareStopListSQL($path, $lines) {
 	$stops1 = array_unique($stops1);
 	sort($stops1);
 	
-	$sql = "INSERT INTO `przystanki` (`id`,`nazwa_pelna`,`nazwa1`,`nazwa2`,`nr_urzedowy`,`nz`) VALUES ";
+	$sql = "INSERT INTO `$prefix"."przystanki` (`id`,`nazwa_pelna`,`nazwa1`,`nazwa2`,`nr_urzedowy`,`nz`) VALUES ";
 
 	$i = 0;
 	foreach ($stops1 as $stop) {
