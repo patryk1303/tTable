@@ -58,6 +58,8 @@ $tpl -> assign('mins2',$clockMins[1]);
 $tpl -> assign('hrs1',$clockHrs[0]);
 $tpl -> assign('hrs2',$clockHrs[1]);
 
+$tpl -> assign('announcements',getAnnouncements($wLine,$wDir,$wStop));
+
 //Pobranie kierunków i przystanków tych kierunków wybranej linii
 if ($isChosenLine) {
 	$directions = getDirections($wLine);
@@ -149,7 +151,11 @@ if ($isChosenAllDeparturesForStopAllDays) {
 if ($isChosenStopList) {
 	$stopsAndLines = array();
 	$stops = getStops();
+	
+	//echo "var stops= [\n";
+	
 	foreach($stops as $stop) {
+		//echo "{id:$stop[4],nazwa1:\"$stop[0]\",nazwa2:\"$stop[1]\",nz:$stop[3]},\n";
 		$temp = array();
 		$lines = getLinesFromStop($stop[4]);
 		
@@ -164,6 +170,8 @@ if ($isChosenStopList) {
 			$stopsAndLines[] = array($temp['stop'],$temp['lines']);
 		}
 	}	
+	
+	//echo "];\n";
 	
 	$tpl -> assign("stopsAndLines",$stopsAndLines);
 	

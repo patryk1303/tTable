@@ -1,10 +1,10 @@
 <?php
-define("DB_SERV", "localhost");
-define("DB_USER", "root");
-define("DB_PASS", "qwe");
-define("DB_BASE", "parser_jazdynowy");
+define("DB_SERV", "");
+define("DB_USER", "");
+define("DB_PASS", "");
+define("DB_BASE", "");
 
-$lang = "pl";
+$lang = "en";
 $prefix = "";
 $timezone = 'Europe/Warsaw';
 date_default_timezone_set($timezone);

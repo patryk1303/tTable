@@ -26,7 +26,8 @@ function prepareInfos_1($path, $lines) {
 	$sql .= ";";
 
 	$sql = str_replace(",;", ";", $sql);
-	return htmlspecialchars($sql);
+	//echo $sql;
+	return ($sql);
 }
 ?>
 	

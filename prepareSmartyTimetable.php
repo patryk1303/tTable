@@ -46,7 +46,8 @@
 			//"infos" => getInfos($line, $dirNumber),
 			"date" => getLineDate($line),
 			"otherLines" => $otherLines,
-			"allMinsCount" => $allMinsCount
+			"allMinsCount" => $allMinsCount,
+			"announc" => getAnnouncements($line,$dirNumber,$stopID)
 		);
 	}
 ?>

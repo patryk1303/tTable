@@ -564,6 +564,35 @@ function getAllDeparturesForStopAndDayType($stopID,$dayTypeID) {
 	return $departures;
 }
 
+function getAnnouncements($line=NULL,$dir=NULL,$stopID=NULL) {
+	if($line==NULL and $dir==NULL and $stopID==NULL)
+		return null;
+	global $mysqli,$prefix;
+	$ret = array();
+	$sql = "SELECT message FROM $prefix"."announcements";
+	if($line!=NULL)
+		$sql .= " WHERE line_id=".getLineID($line);
+	if($dir!=NULL)
+		$sql .= " OR dir_id=".getDirectionID($line,$dir);
+	if($line!=NULL and $dir!=NULL and $stopID!=NULL)
+		$sql .= " OR stop_id=$stopID";
+	if($line==NULL and $dir==NULL)
+		$sql .= " WHERE stop_id=$stopID AND line_id IS NULL AND dir_id IS NULL";
+	//$sql.= " WHERE line_id=$line AND dir_id=$dir AND stop_id=$stopID";
+	//echo $sql;
+	$result = $mysqli->query($sql);
+	while($row = $result->fetch_assoc()) {
+		$ret[] = array(
+			/*"id"			=>	$row["id"],
+			"line_id"		=>	$row["line_id"],
+			"dir_no"		=>	$row["dir_no"],
+			"stop_id"	=>	$row["stop_id"],*/
+			"message"	=>	$row["message"]
+		);
+	}
+	return $ret;
+}
+
 /**
  * @param stop stop name in this way: <b>array($district,$name,$number,$isOnDemand)
  */

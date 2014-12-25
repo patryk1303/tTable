@@ -63,10 +63,10 @@
 			break;
 			
 		case 'infos':
-			$mysqli->query("TRUNCATE `$prefix"."oznaczenia`");
+			//$mysqli->query("TRUNCATE `$prefix"."oznaczenia`");
 			$mysqli->query("TRUNCATE `$prefix"."oznaczenia_1`");
-			$sql = prepareInfos($pathToSchedule, $lines);
-			$mysqli->query($sql);
+			//$sql = prepareInfos($pathToSchedule, $lines);
+			//$mysqli->query($sql);
 			$sql = prepareInfos_1($pathToSchedule, $lines);
 			$mysqli->query($sql);
 			break;

@@ -74,58 +74,61 @@ function prepareDepatrues($path, $lines) {
 			$dayTypeNumber = 1;
 			foreach($dayTypes as $dayType) {
 				$departures = array();
-				$departuresFile = file($path."/$line/$dirNumber"."_$dayTypeNumber");
-				
-				foreach($departuresFile as $dF) {
-					$dF = preg_replace('~[\r\n]+~', '', $dF);
-					$departures[] = explode("\t",$dF);
-				}
-				
-				$departures = transpose($departures);
-				#print_r($departures);
-				
-				//$depsTemp = array();
-				$tripNumber = 0;
-				//line -> trip, each element corresponds to stop number
-				foreach($departures as $departureLine) {
-					$depsTemp = array();
-					$stopNumber = 0;
-					foreach($departureLine as $departure) {
-						//if($line==23)
-						//	echo strlen($departure)." - $departure<br>";
-						if(strlen($departure)>2) {
-							//echo "$line<br>";
-							$departure1 = explode(":",$departure);
-							preg_match($regex, $departure1[1], $min);
-							//echo strlen($departure)." - $departure ";
-							
-							$depsTemp[] = array(
-								"stopID" => $stopsIDs[$stopNumber],
-								"dirID"  => $dirID,
-								"tripNo" => $tripNumber,
-								"dep"    => $departure,
-								"hour"   => $departure1[0],
-								"min"    => $min[1],
-								"infos"  => $min[2]
-							);
-						}
-						
-						$stopNumber++;
+				//$departuresFile = file($path."/$line/$dirNumber"."_$dayTypeNumber");
+				$departuresFile = $path."/$line/$dirNumber"."_$dayTypeNumber";
+				if (file_exists($departuresFile)){
+					$departuresFile = file($departuresFile);
+					foreach($departuresFile as $dF) {
+						$dF = preg_replace('~[\r\n]+~', '', $dF);
+						$departures[] = explode("\t",$dF);
 					}
 					
-					$j=0;
-					foreach($depsTemp as $dT) {
-						if($j==	count($depsTemp)-1)
-							$depStatus=1;
-						elseif($j==0)
-							$depStatus=2;
-						else
-							$depStatus=0;
-						$sql .= "(NULL,$dayType[0],$lineID,{$dT['stopID']},{$dT['dirID']},{$dT['tripNo']},'{$dT['dep']}','{$dT['hour']}','{$dT['min']}','{$dT['infos']}',$depStatus),\n\t";
+					$departures = transpose($departures);
+					#print_r($departures);
+					
+					//$depsTemp = array();
+					$tripNumber = 0;
+					//line -> trip, each element corresponds to stop number
+					foreach($departures as $departureLine) {
+						$depsTemp = array();
+						$stopNumber = 0;
+						foreach($departureLine as $departure) {
+							//if($line==23)
+							//	echo strlen($departure)." - $departure<br>";
+							if(strlen($departure)>2) {
+								//echo "$line<br>";
+								$departure1 = explode(":",$departure);
+								preg_match($regex, $departure1[1], $min);
+								//echo strlen($departure)." - $departure ";
+								
+								$depsTemp[] = array(
+									"stopID" => $stopsIDs[$stopNumber],
+									"dirID"  => $dirID,
+									"tripNo" => $tripNumber,
+									"dep"    => $departure,
+									"hour"   => $departure1[0],
+									"min"    => $min[1],
+									"infos"  => $min[2]
+								);
+							}
+							
+							$stopNumber++;
+						}
 						
-						$j++;
+						$j=0;
+						foreach($depsTemp as $dT) {
+							if($j==	count($depsTemp)-1)
+								$depStatus=1;
+							elseif($j==0)
+								$depStatus=2;
+							else
+								$depStatus=0;
+							$sql .= "(NULL,$dayType[0],$lineID,{$dT['stopID']},{$dT['dirID']},{$dT['tripNo']},'{$dT['dep']}','{$dT['hour']}','{$dT['min']}','{$dT['infos']}',$depStatus),\n\t";
+							
+							$j++;
+						}
+						$tripNumber++;
 					}
-					$tripNumber++;
 				}
 				$dayTypeNumber++;
 			}
