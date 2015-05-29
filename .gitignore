@@ -14,6 +14,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Smarty cache
+/templates_c
+/templates/compile
+
 # =========================
 # Operating System Files
 # =========================

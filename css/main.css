@@ -1,0 +1,9 @@
+body {
+    margin-top: 70px !important;
+}
+
+#footer {
+    border-top: 1px solid gray;
+    margin: 10px 0;
+    padding: 10px 0;
+}
