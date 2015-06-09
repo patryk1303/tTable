@@ -6,11 +6,24 @@
     <div id="result">
         <img alt="loading" src="{baseUrl}/img/ajax-loader.gif">
     </div>
-    <a href="{siteUrl url='/install/lines'}" class="btn btn-info">kolejny krok - linie</a>
+    <a href="{siteUrl url='/install/stops'}" class="btn btn-info">kolejny krok - przystanki</a>
     
+    <div class="row">
+       <ol class="breadcrumb">
+           <li>strona główna</li>
+           <li class="active">typy dni</li>
+           <li>przystanki</li>
+           <li>linie, kierunki, oznaczenia, trasy, odjazdy</li>
+{*           <li>oznaczenia</li>*}
+{*           <li>trasy</li>*}
+{*           <li>odjazdy</li>*}
+           <li>koniec</li>
+       </ol>
+   </div>
 {/block}
 
 {block name="scripts"}
+<link rel="stylesheet" href="{siteUrl url='/css/install.css'}">
 <script>
     $.ajax({
         url: '{siteUrl url='/install/api/daytypes'}',

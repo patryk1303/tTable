@@ -5,9 +5,7 @@
         <group>
             <file>file:/P:/xampp/htdocs/tTable/index.php</file>
             <file>file:/P:/xampp/htdocs/tTable/router/install.php</file>
-            <file>file:/P:/xampp/htdocs/tTable/templates/install/lines.tpl</file>
-            <file>file:/P:/xampp/htdocs/tTable/config.php</file>
-            <file>file:/P:/xampp/htdocs/tTable/templates/install/daytypes.tpl</file>
+            <file>file:/P:/xampp/htdocs/tTable/lib/install.php</file>
         </group>
     </open-files>
 </project-private>

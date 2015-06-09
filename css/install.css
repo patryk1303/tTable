@@ -1,0 +1,15 @@
+nav.navbar {
+    display: none;
+}
+
+body {
+    margin-top: 0 !important;
+}
+
+div.row {
+    margin-top: 20px;
+}
+
+.breadcrumb > .active {
+    font-weight: 900;
+}
