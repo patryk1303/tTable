@@ -13,10 +13,10 @@
            <li>strona główna</li>
            <li>typy dni</li>
            <li class="active">przystanki</li>
-           <li>linie, kierunki, oznaczenia</li>
+           <li>linie, kierunki, oznaczenia, trasy, odjazdy</li>
 {*           <li>oznaczenia</li>*}
-           <li>trasy</li>
-           <li>odjazdy</li>
+{*           <li>trasy</li>*}
+{*           <li>odjazdy</li>*}
            <li>koniec</li>
        </ol>
    </div>

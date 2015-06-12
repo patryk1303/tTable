@@ -1,4 +1,7 @@
 <?php
+
+$polish_letters = array("ą","ę","ł","ó","ś","ć","ź","ż","ń","Ą","Ę","Ł","Ó","Ś","Ć","Ź","Ż","Ń");
+
 /**
  * 
  * @return type
@@ -83,4 +86,35 @@ function getStopID($name1,$name2) {
     ));
     
     return isset($id->id)?$id->id:-1;
+}
+
+/**
+ * 
+ * @param type $full_stop_name
+ */
+function getStopID1($full_stop_name) {
+    global $polish_letters;
+    $stop = explode("/", $full_stop_name);
+    $stop = array_map("trim",$stop);
+    $stop[0] = str_replace(" - nż","",$stop[0]);
+    $stop[0] = str_replace(" – nż","",$stop[0]);
+    $stop[0] = str_replace($polish_letters,"%",$stop[0]);
+    if(count($stop)==2) {
+            $stop[1] = str_replace(" - nż","",$stop[1]);
+            $stop[1] = str_replace(" – nż","",$stop[1]);
+            $stop[1] = str_replace($polish_letters,"%",$stop[1]);
+            $stop_id = getStopID($stop[0], $stop[1]);
+    } else {
+            $stop_id = getStopID($stop[0], "");
+    }
+    return $stop_id;
+}
+
+/**
+ * 
+ * @param type $array
+ */
+function transpose($array) {
+    array_unshift($array, null);
+    return call_user_func_array('array_map', $array);
 }
