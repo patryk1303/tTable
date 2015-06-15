@@ -13,3 +13,29 @@ body {
 }
 
 .red {color: tomato;}
+
+.hour_block {
+    float: left;
+    margin: 7px 4px;
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 768px) {
+    .hour_block {
+        float: none;
+    }
+}
+
+.nav-concerned li a {
+    padding: 2px !important;
+}
+
+@media print {
+    body {
+        margin-top: 0 !important;
+    }
+    
+    a[href]:after {
+        content: "" !important; 
+    }
+}

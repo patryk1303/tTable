@@ -26,12 +26,13 @@
         
         <script src="{baseUrl}/js/lib/jquery.js"></script>
         <script src="{baseUrl}/js/lib/bootstrap.js"></script>
+        <script src="{baseUrl}/js/main.js"></script>
         
         {block "scripts"}
             
         {/block}
         
-            <footer id="footer">
+            <footer id="footer" class="hidden-print">
                 &copy; 2015 Patryk Wychowaniec
             </footer>
         

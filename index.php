@@ -8,6 +8,7 @@ require_once 'lib/Smarty/Smarty.class.php';
 require_once 'lib/Slim-Views/Smarty.php';
 require_once 'lib/rb.php';
 require_once 'config.php';
+require_once 'lib/db_func.php';
 
 
 // application configuration
