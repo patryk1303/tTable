@@ -30,6 +30,15 @@ body {
     padding: 2px !important;
 }
 
+.panel-day-1 { border-color: #210439 !important; }
+.panel-day-1 > .panel-heading { background-color: #522B72 !important; }
+
+.panel-day-2 { border-color: #6F3B10 !important; }
+.panel-day-2 > .panel-heading { background-color: #E5A977 !important; color: #7F3E07 !important; }
+
+.panel-day-3 { border-color: #0F2550 !important; }
+.panel-day-3 > .panel-heading { background-color: #909CB5 !important; color: #0C224E !important; }
+
 @media print {
     body {
         margin-top: 0 !important;
