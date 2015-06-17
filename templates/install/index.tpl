@@ -9,7 +9,7 @@
             w katalogu <em>/timetable</em> oraz są zgodne ze standardem.
         </p>
         <p>
-            <a href="{siteUrl url='/install/daytypes'}" class="btn btn-info">przejdź dalej</a>
+            <a href="{siteUrl url='/install/config'}" class="btn btn-info">przejdź dalej</a>
         </p>
     </div>
         

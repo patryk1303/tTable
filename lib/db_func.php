@@ -50,7 +50,7 @@ function get_signs($line,$dir_number,$stop_id) {
             ":stop_id" => $stop_id
         )
     );
-    $signs_line_dir = R::getAll("Select Distinct signs.sign, signs.description From signs Where signs.line = :line And signs.dirnumber =  :dir_number",
+    $signs_line_dir = R::getAll("Select Distinct signs.sign, signs.description From signs Where signs.line = :line And signs.dirnumber = :dir_number Order By sign",
         array(
             ":line" => $line,
             ":dir_number" => $dir_number

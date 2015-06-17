@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once 'lib/Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();

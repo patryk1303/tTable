@@ -11,6 +11,9 @@ body {
 .margin-top-10 {
     margin-top: 10px;
 }
+.margin-right-5 {
+    margin-right: 5px;
+}
 
 .red {color: tomato;}
 
@@ -39,9 +42,18 @@ body {
 .panel-day-3 { border-color: #0F2550 !important; }
 .panel-day-3 > .panel-heading { background-color: #909CB5 !important; color: #0C224E !important; }
 
+.nav-other-lines > li > a:before { content: "↦"; margin: 0 4px; }
+
+.center { text-align: center; }
+
 @media print {
     body {
         margin-top: 0 !important;
+        font-size: 0.8em !important;
+    }
+    
+    .panel-header {
+        font-size: 0.8em !important;
     }
     
     a[href]:after {

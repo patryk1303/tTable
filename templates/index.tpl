@@ -1,7 +1,7 @@
-{function name=stopname name1="" name2="" req=""}
+{function name=stopname name1="" name2="" req="" pull=true}
     {$name1}
     {if $name2|strlen > 0} / {$name2} {/if}
-    {if $req} <span class="pull-right red"><i class="glyphicon glyphicon-hand-up"></i></span> {/if}
+    {if $req} <span class="{if $pull}pull-right {/if}red"><i class="glyphicon glyphicon-hand-up"></i></span> {/if}
 {/function}
 <!doctype html>
 <html>

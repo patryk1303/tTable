@@ -4,8 +4,11 @@ require_once 'lib/install.php';
 $app->group('/install', function() use ($app) {
     $app->get('/', function() use ($app) {
         $app->render('install/index.tpl');
-    }); 
-    $app->get('/daytypes', function() use ($app) {
+    });
+    $app->get('/config', function() use ($app) {
+        $app->render('install/config.tpl');
+    });
+    $app->map('/daytypes', function() use ($app) {
         $daytypes = file("timetable/typy_dni");
         R::wipe("daytypes");
         foreach($daytypes as $daytype) {
@@ -14,7 +17,7 @@ $app->group('/install', function() use ($app) {
             R::store($day);
         }
         $app->render('install/daytypes.tpl');
-    });
+    })->via("GET","POST");
     $app->get('/stops', function() use ($app) {
         $stops = getStops();
         R::wipe('stops');
