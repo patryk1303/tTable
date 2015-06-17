@@ -34,7 +34,20 @@ $view->parserExtensions = array(
 );
 
 // database connection configuration
-R::setup('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+switch(DB_TYPE) {
+    case 'sqlite':
+        $file_path = dirname(__FILE__).'/db/'.DB_FILE;
+//        echo $file_path;
+        if(!file_exists($file_path)) {
+            touch($file_path);
+        }
+        R::setup('sqlite:'.$file_path);
+        break;
+    case 'mysql':
+    default:
+        R::setup('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+        break;
+}
 
 require_once 'router/Init.php';
 

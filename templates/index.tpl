@@ -33,7 +33,8 @@
         {/block}
         
             <footer id="footer" class="hidden-print">
-                &copy; 2015 Patryk Wychowaniec
+                &copy; 2015 Patryk Wychowaniec<br>
+                Stylizacje: <a href="https://github.com/ksiazkowicz">Maciej Janiszewski</a>
             </footer>
         
         </div>

@@ -6,7 +6,7 @@
     </div>
     
     <div class="row">
-    {foreach $data as $row name=directions}
+    {foreach $data as $row name=directions name=directions}
         
         <div class="col-sm-6">
             <div class="panel panel-info">
@@ -26,6 +26,12 @@
                 </div>
             </div>
         </div>
+                    
+        {if $smarty.foreach.directions.index+1 % 2 == 0}
+            </div>
+            <div class="row">
+        {/if}
+
         
     {/foreach}
     </div>

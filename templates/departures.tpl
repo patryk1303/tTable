@@ -1,14 +1,22 @@
 {extends file='index.tpl'}
 {block name="content"}
-   
-    <div class="page-header">
-        <h1 class="center">
-            <i class="glyphicon glyphicon-arrow-up"></i>&nbsp;{$line}&nbsp;
-            <i class="glyphicon glyphicon-chevron-down"></i>&nbsp;
-            {stopname name1=$stop_name.name1 name2=$stop_name.name2 req=$stop_name.req pull=false}&nbsp;
-            <br>
-            <i class="glyphicon glyphicon-circle-arrow-right"></i>&nbsp;{$dir_name}&nbsp;
-        </h1>
+    <div class="row departure-header">
+        <div class="alert alert-info small-padding alert-print">
+            <div class="col-sm-5 separator">
+                <h1 class="line"><big>{$line}</big></h1>
+            </div>
+
+            <div class="col-sm-7">
+                <h2>
+                    {stopname name1=$stop_name.name1 name2=$stop_name.name2 req=$stop_name.req pull=false}
+                </h2>
+                <span class="margin-left-30">
+                    <i class="glyphicon glyphicon-circle-arrow-right"></i>&nbsp;{$dir_name}
+                </span>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
     </div>
         
     <div class="row">
@@ -18,9 +26,9 @@
             {* departures panels *}
             {foreach $departures as $departure_day}
                 {if $departure_day.count}
-                <div class="panel panel-primary panel-day-{$departure_day.daytype_number}">
+                <div class="panel panel-primary panel-day-{$departure_day.daytype_number} panel-small-padding">
                     <div class="panel-heading">
-                        {$departure_day.daytype}
+                        <h4>{$departure_day.daytype}</h4>
                     </div> 
                     <div class="panel-body">
                     {foreach $departure_day.departures as $hour}
@@ -45,7 +53,7 @@
             {* signs *}
             {if $signs|count}
             <div class="row">
-                <div class="panel panel-warning">
+                <div class="panel panel-warning panel-small-padding">
                     <div class="panel-heading">
                         Oznaczenia
                     </div>
@@ -92,7 +100,7 @@
         </div>
         <div class="col-sm-4">
             {* place for route *}
-            <div class="panel panel-info panel-route">
+            <div class="panel panel-info panel-route panel-small-padding">
                 <div class="panel-heading">Trasa przejazdu</div>
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked nav-concerned">
