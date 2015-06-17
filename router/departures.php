@@ -22,6 +22,7 @@ $app->group('/departures', function() use ($app) {
             array(
                 ":stopid" => $stop
             ));
+        $line_date = R::findOne("lines", " line = :line", array("line" => $line))->date;
         
         foreach($daytypes as $daytype) {
             $temp = array(
@@ -52,7 +53,8 @@ $app->group('/departures', function() use ($app) {
             "signs" => get_signs($line, $direction, $stop),
             "route" => $data["route"],
             "departures" => $data["departures"],
-            "other_lines" => $other_lines
+            "other_lines" => $other_lines,
+            "line_date" => $line_date
         ));
     });
     

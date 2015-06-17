@@ -1,103 +1,150 @@
+@charset "UTF-8";
+/*
+Copyright 2015 Patryk.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/* 
+    Created on : 2015-06-18, 01:01:22
+    Author     : Patryk
+*/
 body {
-    margin-top: 70px !important;
-}
+  margin-top: 70px !important; }
 
 #footer {
-    border-top: 1px solid gray;
-    margin: 10px 0;
-    padding: 10px 0;
-}
+  border-top: 1px solid gray;
+  margin: 10px 0;
+  padding: 10px 0; }
 
 h1.line {
-    text-align: center;
-    border-right: 1px solid #31708F;
-    /*padding: 4px;*/
-}
+  text-align: center;
+  border-right: 1px solid #31708F; }
 
-.margin-top-10 { margin-top: 10px; }
-.margin-right-5 { margin-right: 5px; }
-.margin-left-30 { margin-left: 30px; }
-.small-padding { padding: 5px !important; }
-.padding-left-5 { padding-left: 5px !important; }
+.margin-top-10 {
+  margin-top: 10px; }
 
-.red {color: tomato;}
+.margin-right-5 {
+  margin-right: 5px; }
+
+.margin-left-30 {
+  margin-left: 30px; }
+
+.small-padding {
+  padding: 5px !important; }
+
+.padding-left-5 {
+  padding-left: 5px !important; }
+
+.align-right {
+  text-align: right; }
+
+.red {
+  color: tomato; }
 
 .hour_block {
-    float: left;
-    margin: 7px 4px;
-    font-size: 1.2em;
-}
+  float: left;
+  margin: 7px 4px;
+  font-size: 1.2em; }
 
 .departure-header h1 small {
-    font-size: 0.5em !important;
-    background-color: #FFB19C;
-    /*border-top: 1px solid #993B2B;*/
-    padding: 2px 0;
-    display: block;
-    text-transform: uppercase;
-    color: #427289;
-}
+  font-size: 0.5em !important;
+  background-color: #FFB19C !important;
+  padding: 2px 0;
+  display: block;
+  text-transform: uppercase;
+  color: #427289 !important; }
 
-/*@media screen and (max-width: 768px) {*/
 @media screen and (max-width: 320px) {
-    .hour_block {
-        float: none;
-    }
-}
-
+  .hour_block {
+    float: none; } }
 .nav-concerned li a {
-    padding: 2px !important;
-}
+  padding: 2px !important; }
 
-.panel-day-1 { border-color: #210439 !important; }
-.panel-day-1 > .panel-heading { background-color: #522B72 !important; color: white !important; }
-.panel-day-1 > .panel-heading h4 { color: white !important; }
+.panel-day-1 {
+  border-color: #020103 !important; }
+  .panel-day-1 > .panel-heading {
+    background-color: #522B72 !important;
+    color: #e9ddf2 !important; }
+    .panel-day-1 > .panel-heading h4 {
+      color: #e9ddf2 !important; }
 
-.panel-day-2 { border-color: #6F3B10 !important; }
-.panel-day-2 > .panel-heading { background-color: #E5A977 !important; color: #7F3E07 !important; }
-.panel-day-2 > .panel-heading h4 { color: #7F3E07 !important; }
+.panel-day-2 {
+  border-color: #a45b1f !important; }
+  .panel-day-2 > .panel-heading {
+    background-color: #E5A977 !important;
+    color: white !important; }
+    .panel-day-2 > .panel-heading h4 {
+      color: white !important; }
 
-.panel-day-3 { border-color: #0F2550 !important; }
-.panel-day-3 > .panel-heading { background-color: #909CB5 !important; color: #0C224E !important; }
-.panel-day-3 > .panel-heading h4 { color: #0C224E !important; }
+.panel-day-3 {
+  border-color: #455067 !important; }
+  .panel-day-3 > .panel-heading {
+    background-color: #909CB5 !important;
+    color: white !important; }
+    .panel-day-3 > .panel-heading h4 {
+      color: white !important; }
 
-.nav-other-lines > li > a:before { content: "↦"; margin: 0 4px; }
+.panel-day-4 {
+  border-color: #00331a !important; }
+  .panel-day-4 > .panel-heading {
+    background-color: #00cc66 !important;
+    color: white !important; }
+    .panel-day-4 > .panel-heading h4 {
+      color: white !important; }
 
-.center { text-align: center; }
+.nav-other-lines > li > a:before {
+  /*content: "ÔćŽ"; margin: 0 4px;*/
+  content: ">";
+  margin: 0 4px;
+  font-weight: 700; }
+
+.center {
+  text-align: center; }
 
 .alert-info > .separator::after {
-    border-right: 1px solid #31708F;
-}
+  border-right: 1px solid #31708F; }
 
-.trip-show { cursor: pointer; }
+.trip-show {
+  cursor: pointer; }
 
-.current { font-weight: 900; }
+.current {
+  font-weight: 900; }
 
 @media print {
-    body {
-        margin-top: 0 !important;
-        font-size: 1em !important;
-    }
-    
-    .alert-print { padding: 2px !important; }
-    .alert-print > div { padding: 2px !important; }
-    .alert-print > div > h1, 
-    .alert-print > div > h2, 
-    .alert-print > div > h3 { padding: 2px !important; margin: 2px !important } 
-    
-    .panel-small-padding div {
+  body {
+    margin-top: 0 !important;
+    font-size: 1em !important; }
+
+  .alert-print {
+    padding: 2px !important; }
+    .alert-print > div {
+      padding: 2px !important; }
+      .alert-print > div > h1, .alert-print > div > h2, .alert-print > div > h3 {
         padding: 2px !important;
-    }
-    .panel-small-padding > h4 { padding: 2px !important; }
-    
-    ul.nav > .active > a {
-        border: 1px solid black;
-        border-radius: 4px;
-        margin: 2px 0;
-        font-weight: 900;
-    }
-    
-    a[href]:after {
-        content: "" !important; 
-    }
-}
+        margin: 2px !important; }
+
+  .panel-small-padding div {
+    padding: 2px !important; }
+  .panel-small-padding > h4 {
+    padding: 2px !important; }
+
+  ul.nav > .active > a {
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: 2px 0;
+    font-weight: 900; }
+
+  a[href]:after {
+    content: "" !important; } }
+
+/*# sourceMappingURL=main.css.map */

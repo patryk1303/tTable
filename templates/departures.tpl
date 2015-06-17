@@ -73,6 +73,11 @@
                 </div>
             </div>
             {/if}
+            <div class="row">
+                <div class="col-xs-12 align-right">
+                    Rozkład jazdy obowiązuje od {$line_date}
+                </div>
+            </div>
             {* other lines *}
             {if $other_lines|count > 1}
             <div class="row hidden-print">
@@ -99,9 +104,11 @@
             {/if}
             {* print button *}
             <div class="row">
-                <button class="btn btn-primary hidden-print" id="buttonPrint">
-                    <i class="glyphicon glyphicon-print"></i>&nbsp;Drukuj
-                </button>
+                <div class="col-xs-3">
+                    <button class="btn btn-primary hidden-print" id="buttonPrint">
+                        <i class="glyphicon glyphicon-print"></i>&nbsp;Drukuj
+                    </button>
+                </div>
             </div>
         </div>
         <div class="col-sm-4">
