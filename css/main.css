@@ -11,7 +11,7 @@ body {
 h1.line {
     text-align: center;
     border-right: 1px solid #31708F;
-    padding: 4px;
+    /*padding: 4px;*/
 }
 
 .margin-top-10 { margin-top: 10px; }
@@ -28,7 +28,18 @@ h1.line {
     font-size: 1.2em;
 }
 
-@media screen and (max-width: 768px) {
+.departure-header h1 small {
+    font-size: 0.5em !important;
+    background-color: #FFB19C;
+    /*border-top: 1px solid #993B2B;*/
+    padding: 2px 0;
+    display: block;
+    text-transform: uppercase;
+    color: #427289;
+}
+
+/*@media screen and (max-width: 768px) {*/
+@media screen and (max-width: 320px) {
     .hour_block {
         float: none;
     }
@@ -57,6 +68,10 @@ h1.line {
 .alert-info > .separator::after {
     border-right: 1px solid #31708F;
 }
+
+.trip-show { cursor: pointer; }
+
+.current { font-weight: 900; }
 
 @media print {
     body {

@@ -15,7 +15,7 @@ function get_line_route($line,$dir_number) {
 
 function get_departures_hours($line,$dir_number,$stop_id) {
     $ret = array();
-    $hours =  R::getAll("Select Distinct departures.hour From departures Where departures.line = :line And departures.dirnumber = :dir_number And departures.stopid = :stop_id",
+    $hours =  R::getAll("Select Distinct departures.hour From departures Where departures.line = :line And departures.dirnumber = :dir_number And departures.stopid = :stop_id Order By hour",
         array(
             ":line" => $line,
             ":dir_number" => $dir_number,
@@ -29,15 +29,25 @@ function get_departures_hours($line,$dir_number,$stop_id) {
 }
 
 function get_departures_for_hour($line,$dir_number,$stop_id,$daytype_id,$hour) {
-    return R::getAll("Select Distinct departures.min, departures.signs, departures.tripnumber From departures Where departures.hour = :hour And departures.line = :line And departures.dirnumber = :dir_number And departures.stopid = :stop_id And departures.daytype = :daytype",
+    return R::getAll("Select Distinct departures.min, departures.signs, departures.tripnumber From departures Where departures.hour = :hour And departures.line = :line And departures.dirnumber = :dir_number And departures.stopid = :stop_id And departures.daytype = :daytype Order By min",
         array(
             ":hour" => $hour,
             ":line" => $line,
             ":dir_number" => $dir_number,
             ":stop_id" => $stop_id,
             ":daytype" => $daytype_id,
-            )
+        )
     );
+}
+
+function get_trip($line,$dir_number,$daytype_id,$trip_no) {
+    return R::getAll("Select Distinct routes.stopid, departures.hour, departures.min, departures.signs, stops.* From routes Inner Join departures On departures.dirnumber = routes.dirnuber And departures.stopid = routes.stopid And departures.line = routes.line Inner Join stops On stops.id = departures.stopid Where routes.line = :line And routes.dirnuber = :dir_number And departures.daytype = :daytype And departures.tripnumber = :trip_no Order By routes.id",
+        array(
+            ":line" => $line,
+            ":dir_number" => $dir_number,
+            ":daytype" => $daytype_id,
+            ":trip_no" => $trip_no
+        ));
 }
 
 function get_signs($line,$dir_number,$stop_id) {

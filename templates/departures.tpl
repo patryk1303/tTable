@@ -3,12 +3,17 @@
     <div class="row departure-header">
         <div class="alert alert-info small-padding alert-print">
             <div class="col-sm-5 separator">
-                <h1 class="line"><big>{$line}</big></h1>
+                <h1 class="line">
+                    <big>{$line}</big>
+                    {if $stop_name.req}
+                        <br><small>na żądanie</small>
+                    {/if}
+                </h1>
             </div>
 
             <div class="col-sm-7">
                 <h2>
-                    {stopname name1=$stop_name.name1 name2=$stop_name.name2 req=$stop_name.req pull=false}
+                    {stopname name1=$stop_name.name1 name2=$stop_name.name2 write_req=false}
                 </h2>
                 <span class="margin-left-30">
                     <i class="glyphicon glyphicon-circle-arrow-right"></i>&nbsp;{$dir_name}
@@ -37,7 +42,9 @@
                             {$hour.hour}
                             <sup>
                             {foreach $hour.minutes as $minute}
-                                <a href="{siteUrl url='/trip/'}{$line}/{$dir_no}/{$stop_id}/{$minute.tripnumber}">
+{*                                (line,dir_no,stop_id,daytype_id,trip_no)*}
+                                <a data-daytype-id="{$departure_day.daytype_number}" data-trip-no="{$minute.tripnumber}" class="trip-show">
+{*                                    href="{siteUrl url='/trip/'}{$line}/{$dir_no}/{$stop_id}/{$departure_day.daytype_number}/{$minute.tripnumber}">*}
                                     {$minute.min}<small>{$minute.signs}</small>
                                 </a>
                             {/foreach}
@@ -55,7 +62,7 @@
             <div class="row">
                 <div class="panel panel-warning panel-small-padding">
                     <div class="panel-heading">
-                        Oznaczenia
+                        <h4>Oznaczenia</h4>
                     </div>
                     <div class="panel-body">
                         <ul>
@@ -116,5 +123,52 @@
             </div>
         </div>
     </div>
+                    
+    <div class="modal fade" id="tripModal" tabindex="-1"
+         role="dialog" aria-labelledby="tripModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="tripModalLabel">
+                        Trasa wybranego kursu
+                    </h4>
+                </div>
+                <div class="modal-body" id="tripModalBody">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+
+{block name="scripts"}
+<script>
+    var $tripModalBody = $('#tripModalBody'),
+        $tripModal = $('#tripModal');
+    function getTrip(line,dir_no,stop_id,daytype_id,trip_no) {
+        var url = '{baseUrl}/api/trip/';
+        url += line+'/'+dir_no+'/'+stop_id+'/'+daytype_id+'/'+trip_no;
+        $.ajax({
+            url: url,
+            method: 'GET'
+        })
+        .done(function(response) {
+            $tripModalBody.html(response);
+        });
+    }
     
+    $('.trip-show').click(function() {
+       var $self = $(this),
+           daytype_id = $self.attr('data-daytype-id'),
+           trip_no = $self.attr('data-trip-no');
+       
+       $tripModalBody.html('<img src="{baseUrl}/img/ajax-loader.gif" alt="loading">');
+       $tripModal.modal();
+       getTrip({$line},{$dir_no},{$stop_id},daytype_id,trip_no);
+    });
+</script>
 {/block}

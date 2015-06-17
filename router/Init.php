@@ -10,3 +10,4 @@ require 'departures.php';
 require 'settings.php';
 require 'stops.php';
 require 'install.php';
+require 'api/InitApi.php';
