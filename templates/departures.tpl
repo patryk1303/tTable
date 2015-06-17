@@ -42,7 +42,6 @@
                             {$hour.hour}
                             <sup>
                             {foreach $hour.minutes as $minute}
-{*                                (line,dir_no,stop_id,daytype_id,trip_no)*}
                                 <a data-daytype-id="{$departure_day.daytype_number}" data-trip-no="{$minute.tripnumber}" class="trip-show">
 {*                                    href="{siteUrl url='/trip/'}{$line}/{$dir_no}/{$stop_id}/{$departure_day.daytype_number}/{$minute.tripnumber}">*}
                                     {$minute.min}<small>{$minute.signs}</small>

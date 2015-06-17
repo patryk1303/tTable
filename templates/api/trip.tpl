@@ -5,7 +5,9 @@
             {$trip_row.hour}:{$trip_row.min}
         </div>
         <div class="col-xs-11">
-            {stopname name1=$trip_row.name1 name2=$trip_row.name2 req=$trip_row.req pull=false}
+            <a href="{baseUrl}/departures/{$line}/{$dir_no}/{$trip_row.stopid}">
+                {stopname name1=$trip_row.name1 name2=$trip_row.name2 req=$trip_row.req pull=false}
+            </a>
         </div>
     </div>
 {/foreach}
