@@ -18,7 +18,7 @@ $app->group('/departures', function() use ($app) {
             ))->name;
         $daytypes = R::find("daytypes");
         $hours = get_departures_hours($line, $direction, $stop);
-        $other_lines = R::getAll("Select Distinct departures.line, departures.dirnumber, directions.name From departures Inner Join directions On directions.dirnumber = departures.dirnumber And directions.line = departures.line Where departures.stopid = :stopid Order By departures.line, departures.dirnumber",
+        $other_lines = R::getAll("Select Distinct departures.dirnumber, directions.name, directions.line From departures Inner Join directions On directions.dirnumber = departures.dirnumber And directions.line = departures.line Where departures.stopid = :stopid Order By directions.line*1, departures.dirnumber",
             array(
                 ":stopid" => $stop
             ));

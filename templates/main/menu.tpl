@@ -13,11 +13,11 @@
             <ul class="nav navbar-nav">
                 <li><a href="{siteUrl url='/stops'}">Przystanki</a></li>
                 <li class='divider'></li>
-                {if $lines|count > 0}
-                    {foreach $lines as $line}
-                        <li><a href="{siteUrl url='/line/'}{$line.line}">{$line.line}</a></li>
-                    {/foreach}
-                {/if}
+				{foreach $lines as $line}
+					{if isset($line.line)}
+						<li><a href="{siteUrl url='/line/'}{$line.line}">{$line.line}</a></li>
+					{/if}
+				{/foreach}
             </ul>
         </div>
     </div>

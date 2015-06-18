@@ -18,6 +18,10 @@ $RECYCLE.BIN/
 /templates_c
 /templates/compile
 
+# Other files
+/timetable_
+/timetable__
+
 # =========================
 # Operating System Files
 # =========================

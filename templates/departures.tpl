@@ -174,7 +174,7 @@
        
        $tripModalBody.html('<img src="{baseUrl}/img/ajax-loader.gif" alt="loading">');
        $tripModal.modal();
-       getTrip({$line},{$dir_no},{$stop_id},daytype_id,trip_no);
+       getTrip('{$line}',{$dir_no},{$stop_id},daytype_id,trip_no);
     });
 </script>
 {/block}
