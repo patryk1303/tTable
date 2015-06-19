@@ -13,7 +13,7 @@
 
             <div class="col-sm-7">
                 <h2>
-                    {stopname name1=$stop_name.name1 name2=$stop_name.name2 write_req=false}
+                    {call stopname name1=$stop_name.name1 name2=$stop_name.name2 write_req=false}
                 </h2>
                 <span class="margin-left-30">
                     <i class="glyphicon glyphicon-circle-arrow-right"></i>&nbsp;{$dir_name}
@@ -120,7 +120,7 @@
                         {foreach $route as $stop}
                         <li {if $stop_id == $stop.stopid} class="active" {/if}>
                             <a href="{siteUrl url='/departures/'}{$line}/{$dir_no}/{$stop.stopid}">
-                                {stopname name1=$stop.name1 name2=$stop.name2 req=$stop.req}
+                                {call stopname name1=$stop.name1 name2=$stop.name2 req=$stop.req}
                             </a>
                         </li>
                         {/foreach}
@@ -164,6 +164,9 @@
         })
         .done(function(response) {
             $tripModalBody.html(response);
+        })
+        .error(function() {
+            $tripModalBody.html('Wystąpił błąd');
         });
     }
     

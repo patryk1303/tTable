@@ -18,7 +18,7 @@
                     {foreach $row.stops as $stop}
                         <li>
                             <a href="{siteUrl url='/departures/'}{$line}/{$stop.dirnuber}/{$stop.stopid}">
-                                {stopname name1=$stop.name1 name2=$stop.name2 req=$stop.req}
+                                {call stopname name1=$stop.name1 name2=$stop.name2 req=$stop.req}
                             </a>
                         </li>
                     {/foreach}

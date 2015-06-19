@@ -14,7 +14,7 @@
                     {foreach $stops as $stop name=stops}
                         <li>
                             <a href="{siteUrl url='/stops/'}{$stop.id}">
-                            {stopname name1=$stop.name1 name2=$stop.name2 req=$stop.req pull=false}
+                            {call stopname name1=$stop.name1 name2=$stop.name2 req=$stop.req pull=false}
                             <span class="pull-right red margin-right-5">
                                 {$lines_stops[$smarty.foreach.stops.index][0].lines}
                             </span>

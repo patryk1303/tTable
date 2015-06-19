@@ -6,7 +6,7 @@
         </div>
         <div class="col-xs-11">
             <a href="{baseUrl}/departures/{$line}/{$dir_no}/{$trip_row.stopid}">
-                {stopname name1=$trip_row.name1 name2=$trip_row.name2 req=$trip_row.req pull=false}
+                {call stopname name1=$trip_row.name1 name2=$trip_row.name2 req=$trip_row.req pull=false}
             </a>
         </div>
     </div>
