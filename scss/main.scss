@@ -150,4 +150,12 @@ h1.line {
     a[href]:after {
         content: "" !important; 
     }
+    
+    body {
+        background-color: transparent !important;
+    }
+    
+    .nav-concerned li a {
+        padding: 0 !important;
+    }
 }

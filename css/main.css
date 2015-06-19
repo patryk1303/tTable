@@ -145,6 +145,12 @@ h1.line {
     font-weight: 900; }
 
   a[href]:after {
-    content: "" !important; } }
+    content: "" !important; }
+
+  body {
+    background-color: transparent !important; }
+
+  .nav-concerned li a {
+    padding: 0 !important; } }
 
 /*# sourceMappingURL=main.css.map */
