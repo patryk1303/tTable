@@ -77,6 +77,8 @@ h1.line {
     color: #e9ddf2 !important; }
     .panel-day-1 > .panel-heading h4 {
       color: #e9ddf2 !important; }
+      .panel-day-1 > .panel-heading h4 a {
+        color: #e9ddf2 !important; }
 
 .panel-day-2 {
   border-color: #a45b1f !important; }
@@ -85,6 +87,8 @@ h1.line {
     color: white !important; }
     .panel-day-2 > .panel-heading h4 {
       color: white !important; }
+      .panel-day-2 > .panel-heading h4 a {
+        color: white !important; }
 
 .panel-day-3 {
   border-color: #455067 !important; }
@@ -93,6 +97,8 @@ h1.line {
     color: white !important; }
     .panel-day-3 > .panel-heading h4 {
       color: white !important; }
+      .panel-day-3 > .panel-heading h4 a {
+        color: white !important; }
 
 .panel-day-4 {
   border-color: #00331a !important; }
@@ -101,6 +107,8 @@ h1.line {
     color: white !important; }
     .panel-day-4 > .panel-heading h4 {
       color: white !important; }
+      .panel-day-4 > .panel-heading h4 a {
+        color: white !important; }
 
 .nav-other-lines > li > a:before {
   /*content: "ÔćŽ"; margin: 0 4px;*/
@@ -119,6 +127,11 @@ h1.line {
 
 .current {
   font-weight: 900; }
+
+.panel-heading-collapse > h4 > a {
+  text-decoration: none;
+  cursor: pointer;
+  display: block; }
 
 @media print {
   body {

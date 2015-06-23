@@ -50,6 +50,17 @@ function get_trip($line,$dir_number,$daytype_id,$trip_no) {
         ));
 }
 
+function get_last_stop_in_trip($line,$dir_number,$daytype_id,$trip_no) {
+    $stop = R::getAll("Select stops.name1, stops.name2 From routes Inner Join departures On departures.dirnumber = routes.dirnuber And departures.stopid = routes.stopid And departures.line = routes.line Inner Join stops On stops.id = departures.stopid Where routes.line = :line And routes.dirnuber = :dir_number And departures.daytype = :daytype And departures.tripnumber = :trip_no Order By routes.id DESC LIMIT 1",
+        array(
+            ":line" => $line,
+            ":dir_number" => $dir_number,
+            ":daytype" => $daytype_id,
+            ":trip_no" => $trip_no
+        ));
+    return $stop[0];
+}
+
 function get_signs($line,$dir_number,$stop_id) {
     $current_signs = array();
     $current_stop_signs = array();
@@ -84,4 +95,27 @@ function get_signs($line,$dir_number,$stop_id) {
     }
     
     return $current_signs;
+}
+
+function get_lines_from_stop($stop_id) {
+    return R::getAll("Select Distinct Group_Concat(Distinct departures.line Order By departures.line*1 Separator ' ') As `lines` From departures Where departures.stopid = " . $stop_id);
+}
+
+function get_stops_filter($filter = '') {
+    $filter = $filter == '' ? null : '%' . $filter . '%';
+    if($filter != null) {
+        $stops =  R::findAll('stops', ' name1 LIKE :filter OR name2 LIKE :filter ORDER BY name1,name2',array(
+            ":filter" => $filter
+        ));
+    } else {
+        $stops =  R::findAll('stops', 'ORDER BY name1,name2');
+    }
+    return $stops;
+}
+
+function get_stop_departures($stop_id,$daytype_id) {
+    return R::getAll("Select departures.line, departures.hour, departures.min, departures.tripnumber, departures.dirnumber, directions.name as directionname From departures Inner Join directions On directions.dirnumber = departures.dirnumber And directions.line = departures.line Where departures.stopid = :stop_id And departures.daytype = :daytype_id Order By departures.hour, departures.min",array(
+        ":stop_id" => $stop_id,
+	":daytype_id" => $daytype_id
+    ));
 }

@@ -20,6 +20,9 @@
         
         {/block}
         
+        <script>
+            var URL = '{baseUrl}';
+        </script>
         <script src="{baseUrl}/js/lib/jquery.js"></script>
         <script src="{baseUrl}/js/lib/bootstrap.js"></script>
         <script src="{baseUrl}/js/main.js"></script>

@@ -85,6 +85,9 @@ h1.line {
             background-color: $color !important;
             color: $light !important;
             h4 {
+                a {
+                    color: $light !important;
+                }
                 color: $light !important;
             }
         }
@@ -111,6 +114,16 @@ h1.line {
 
 .current {
     font-weight: 900; 
+}
+
+.panel-heading-collapse {
+    > h4 {
+        > a {
+            text-decoration: none;
+            cursor: pointer;
+            display: block;
+        }
+    }
 }
 
 @media print { 

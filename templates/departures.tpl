@@ -42,7 +42,11 @@
                             {$hour.hour}
                             <sup>
                             {foreach $hour.minutes as $minute}
-                                <a data-daytype-id="{$departure_day.daytype_number}" data-trip-no="{$minute.tripnumber}" class="trip-show">
+                                <a data-daytype-id="{$departure_day.daytype_number}"
+                                   data-trip-no="{$minute.tripnumber}" class="trip-show"
+                                   data-line="{$line}"
+                                   data-dir-no="{$dir_no}"
+                                   data-stop-id="{$stop_id}">
 {*                                    href="{siteUrl url='/trip/'}{$line}/{$dir_no}/{$stop_id}/{$departure_day.daytype_number}/{$minute.tripnumber}">*}
                                     {$minute.min}<small>{$minute.signs}</small>
                                 </a>
@@ -129,55 +133,9 @@
             </div>
         </div>
     </div>
-                    
-    <div class="modal fade" id="tripModal" tabindex="-1"
-         role="dialog" aria-labelledby="tripModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="tripModalLabel">
-                        Trasa wybranego kursu
-                    </h4>
-                </div>
-                <div class="modal-body" id="tripModalBody">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
+    {include file='common/_trip_modal.tpl'}
 {/block}
 
 {block name="scripts"}
-<script>
-    var $tripModalBody = $('#tripModalBody'),
-        $tripModal = $('#tripModal');
-    function getTrip(line,dir_no,stop_id,daytype_id,trip_no) {
-        var url = '{baseUrl}/api/trip/';
-        url += line+'/'+dir_no+'/'+stop_id+'/'+daytype_id+'/'+trip_no;
-        $.ajax({
-            url: url,
-            method: 'GET'
-        })
-        .done(function(response) {
-            $tripModalBody.html(response);
-        })
-        .error(function() {
-            $tripModalBody.html('Wystąpił błąd');
-        });
-    }
-    
-    $('.trip-show').click(function() {
-       var $self = $(this),
-           daytype_id = $self.attr('data-daytype-id'),
-           trip_no = $self.attr('data-trip-no');
-       
-       $tripModalBody.html('<img src="{baseUrl}/img/ajax-loader.gif" alt="loading">');
-       $tripModal.modal();
-       getTrip('{$line}',{$dir_no},{$stop_id},daytype_id,trip_no);
-    });
-</script>
+    <script src="{baseUrl}/js/trip_modal.js"></script>
 {/block}

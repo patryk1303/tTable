@@ -18,15 +18,31 @@
 
 $app->group('/stops', function() use ($app) {
    $app->get('/', function() use($app) {
-       $stops = R::findAll('stops', 'ORDER BY name1,name2');
+//       $stops = R::findAll('stops', 'ORDER BY name1,name2');
+       $stops = get_stops_filter('');
        $lines_from_stops = array();
        foreach($stops as $stop) {
-           $lines_from_stops[] = R::getAll("Select Distinct Group_Concat(Distinct departures.line Order By departures.line Separator ' ') As `lines` From departures Where departures.stopid = " . $stop["id"]);
+//           $lines_from_stops[] = R::getAll("Select Distinct Group_Concat(Distinct departures.line Order By departures.line*1 Separator ' ') As `lines` From departures Where departures.stopid = " . $stop["id"]);
+           $lines_from_stops[] = get_lines_from_stop($stop["id"]);
        }
        
        $app->render('stops/stops.tpl', array("stops"=>$stops,"lines_stops"=>$lines_from_stops));
    });
    $app->get('/:id', function($id) use($app) {
-       
+       $departures = array();
+       $daytypes = R::find('daytypes');
+       foreach($daytypes as $daytype) {
+           $temp = array(
+               "daytype" => $daytype->name,
+               "daytype_id" => $daytype->id,
+               "departures" => get_stop_departures($id, $daytype->id)
+           );
+           $departures[] = $temp;
+       }
+       $app->render('stops/stop.tpl', array(
+           "departures"=>$departures,
+           "stop_id"=>$id,
+           "stop_name"=>  get_stop_name($id)
+       ));
    });
 });
