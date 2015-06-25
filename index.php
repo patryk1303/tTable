@@ -19,6 +19,7 @@ $app = new \Slim\Slim(array(
     'debug' => true,
     'templates.path' => './templates'
 ));
+date_default_timezone_set(TIMEZONE);
 
 $req = $app->getInstance()->request();
 $app->baseUrl = $req->getUrl() . $req->getRootUri();
