@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>rJazdy</title>
+{*        <link rel="stylesheet" href="{baseUrl}/css/temp.css">*}
         <link rel="stylesheet" href="{baseUrl}/css/main.css">
 {*        <link rel="stylesheet" href="{baseUrl}/css/bootstrap.css">*}
         <link rel="stylesheet" href="{baseUrl}/css/lavish-bootstrap.css">

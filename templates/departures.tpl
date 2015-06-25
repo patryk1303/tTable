@@ -4,7 +4,9 @@
         <div class="alert alert-info small-padding alert-print">
             <div class="col-sm-5 separator">
                 <h1 class="line">
-                    <big>{$line}</big>
+                    <big>
+                        <a href="{baseUrl}/line/{$line}">{$line}</a>
+                    </big>
                     {if $stop_name.req}
                         <br><small>na żądanie</small>
                     {/if}
@@ -13,7 +15,9 @@
 
             <div class="col-sm-7">
                 <h2>
-                    {call stopname name1=$stop_name.name1 name2=$stop_name.name2 write_req=false}
+                    <a href="{baseUrl}/stops/{$stop_id}">
+                        {call stopname name1=$stop_name.name1 name2=$stop_name.name2 write_req=false}
+                    </a>
                 </h2>
                 <span class="margin-left-30">
                     <i class="glyphicon glyphicon-circle-arrow-right"></i>&nbsp;{$dir_name}
@@ -43,10 +47,11 @@
                             <sup>
                             {foreach $hour.minutes as $minute}
                                 <a data-daytype-id="{$departure_day.daytype_number}"
-                                   data-trip-no="{$minute.tripnumber}" class="trip-show"
+                                   data-trip-no="{$minute.tripnumber}"
                                    data-line="{$line}"
                                    data-dir-no="{$dir_no}"
-                                   data-stop-id="{$stop_id}">
+                                   data-stop-id="{$stop_id}"
+                                   class="trip-show {call check_minute hour=$hour.hour minute=$minute.min}">
 {*                                    href="{siteUrl url='/trip/'}{$line}/{$dir_no}/{$stop_id}/{$departure_day.daytype_number}/{$minute.tripnumber}">*}
                                     {$minute.min}<small>{$minute.signs}</small>
                                 </a>

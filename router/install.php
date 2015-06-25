@@ -61,7 +61,8 @@ $app->group('/install', function() use ($app) {
         
         R::exec("DROP TABLE IF EXISTS `departures`");
         //R::exec("CREATE TABLE IF NOT EXISTS `departures` ( `id` int(11) unsigned NOT NULL, `daytype` int(11) unsigned DEFAULT NULL, `stopid` int(11) unsigned DEFAULT NULL, `dirnumber` int(11) unsigned DEFAULT NULL, `tripnumber` int(11) unsigned DEFAULT NULL, `hour` int(11) unsigned DEFAULT NULL, `min` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL, `signs` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL, `line` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
-        R::exec("CREATE TABLE IF NOT EXISTS `departures` ( `id` int(11) unsigned NOT NULL, `daytype` int(11) unsigned DEFAULT NULL, `stopid` int(11) unsigned DEFAULT NULL, `dirnumber` int(11) unsigned DEFAULT NULL, `tripnumber` int(11) unsigned DEFAULT NULL, `hour` int(11) unsigned DEFAULT NULL, `min` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL, `signs` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL, `line` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+//        R::exec("CREATE TABLE IF NOT EXISTS `departures` ( `id` int(11) unsigned NOT NULL, `daytype` int(11) unsigned DEFAULT NULL, `stopid` int(11) unsigned DEFAULT NULL, `dirnumber` int(11) unsigned DEFAULT NULL, `tripnumber` int(11) unsigned DEFAULT NULL, `hour` int(11) unsigned DEFAULT NULL, `min` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL, `signs` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL, `line` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+        R::exec("CREATE TABLE IF NOT EXISTS `departures` ( `id` int(11) unsigned NOT NULL, `daytype` int(11) unsigned DEFAULT NULL, `stopid` int(11) unsigned DEFAULT NULL, `dirnumber` int(11) unsigned DEFAULT NULL, `tripnumber` int(11) unsigned DEFAULT NULL, `hour` int(11) unsigned DEFAULT NULL, `min` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL, `signs` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL, `line` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL, `status` int(1) DEFAULT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
         R::exec("ALTER TABLE `departures` ADD PRIMARY KEY (`id`)");
         R::exec("ALTER TABLE `departures` MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT");
         
@@ -218,7 +219,7 @@ $app->group('/install', function() use ($app) {
                     }
                 }
                 
-                $sql = "INSERT INTO `ttable`.`departures` (`id`, `daytype`, `stopid`, `dirnumber`, `tripnumber`, `hour`, `min`, `signs`, `line`) VALUES ";
+                $sql = "INSERT INTO `ttable`.`departures` (`id`, `daytype`, `stopid`, `dirnumber`, `tripnumber`, `hour`, `min`, `signs`, `line`, `status`) VALUES ";
                 foreach($all_departures as $departure) {
                     $daytype = $departure['daytype'];
                     $stopid = $departure['stopid'];
@@ -228,7 +229,7 @@ $app->group('/install', function() use ($app) {
                     $min= $departure['min'];
                     $signs= $departure['signs'];
                     $line= $departure['line'];
-                    $sql .= "(NULL, '$daytype', '$stopid', '$dirno', '$tripno', '$hour', '$min', '$signs', '$line'), ";
+                    $sql .= "(NULL, '$daytype', '$stopid', '$dirno', '$tripno', '$hour', '$min', '$signs', '$line', 0), ";
                 }
                 $sql .= ";";
                 $sql = str_replace(", ;", ";", $sql);

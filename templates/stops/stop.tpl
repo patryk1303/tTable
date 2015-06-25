@@ -11,11 +11,19 @@
             </h3>
         </div>
     </div>
+
+    <div class="row margin-bottom-10">
+        <div class="col-xs-12">
+            <button class="btn btn-default btn-block bigger" id="showHidePassed">
+                Pokaż minione odjazdy
+            </button>
+        </div>
+    </div>
     
     {foreach $departures as $departure}
         <div class="row">
             <div class="panel panel-default panel-day-{$departure.daytype_id}">
-                <div class="panel-heading panel-heading-collapse">
+                <div class="panel-heading panel-heading-collapse panel-heading-stop-daytype">
                     <h4>
                         <a data-toggle="collapse" data-target="#day-{$departure.daytype_id}">{$departure.daytype}</a>
                     </h4>
@@ -29,7 +37,8 @@
                                 <th>Odjazd</th>
                             </tr>
                             {foreach $departure.departures as $row}
-                            <tr class="trip-show" data-daytype-id="{$departure.daytype_id}"
+                            <tr class="trip-show {call check_minute hour=$row.hour minute=$row.min}"
+                            data-daytype-id="{$departure.daytype_id}"
                                 data-trip-no="{$row.tripnumber}"
                                 data-line="{$row.line}"
                                 data-dir-no="{$row.dirnumber}"
@@ -51,4 +60,11 @@
 
 {block name="scripts"}
     <script src="{baseUrl}/js/trip_modal.js"></script>
+    <script>
+        var $showHidePassed = $('#showHidePassed');
+        $showHidePassed.click(function() {
+            $('.passed').toggle();
+            $showHidePassed.toggleClass('active');
+        });
+    </script>
 {/block}

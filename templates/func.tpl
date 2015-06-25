@@ -5,3 +5,14 @@
         {if $req} <span class="{if $pull}pull-right {/if}red"><i class="glyphicon glyphicon-hand-up"></i></span> {/if}
     {/if}
 {/function}
+
+{function name=check_minute hour="" minute=""}
+	{$status = ""}
+	{$d_time = $hour|cat:":"|cat:$minute|strtotime}
+	{if $current_time > $d_time}
+		{$status|cat:" passed"}
+	{elseif $next_hour_time > $d_time}
+		{$status|cat:" next"}
+	{/if}
+	{$status}
+{/function}
