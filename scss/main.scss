@@ -120,10 +120,23 @@ h1.line {
     }
 }
 
+.row {
+    transition: background 0.3s linear;
+    
+    &.stops {
+        padding: 3px 7px;
+    }
+}
+
+.row.hover:hover {
+    background: lighten(#522B72,50%);
+}
+
 @media print { 
     body {
         margin-top: 0 !important;
         font-size: 1em !important;
+        background-color: transparent !important;
     }
     
     .alert-print {
@@ -157,12 +170,14 @@ h1.line {
     a[href]:after {
         content: "" !important; 
     }
-    
-    body {
-        background-color: transparent !important;
-    }
-    
+   
     .nav-concerned li a {
         padding: 0 !important;
+    }
+    
+    hr.page-break {
+        page-break-after: always;
+        height: 0 !important;
+        border-width: 0 !important;
     }
 }

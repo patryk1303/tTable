@@ -1,4 +1,5 @@
 {include file='func.tpl'}
+{include file='departures/style_1.tpl'}
 <!doctype html>
 <html>
     <head>

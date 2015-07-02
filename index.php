@@ -11,7 +11,7 @@ require_once 'lib/Slim-Views/Smarty.php';
 require_once 'lib/rb.php';
 require_once 'config.php';
 require_once 'lib/db_func.php';
-
+require_once 'lib/departures.php';
 
 // application configuration
 $app = new \Slim\Slim(array(

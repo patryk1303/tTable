@@ -28,20 +28,35 @@ $app->group('/stops', function() use ($app) {
        
        $app->render('stops/stops.tpl', array("stops"=>$stops,"lines_stops"=>$lines_from_stops));
    });
-   $app->get('/:id', function($id) use($app) {
+   $app->get('/chrono/:id', function($id) use($app) {
        $departures = array();
        $daytypes = R::find('daytypes');
        foreach($daytypes as $daytype) {
            $temp = array(
                "daytype" => $daytype->name,
                "daytype_id" => $daytype->id,
-               "departures" => get_stop_departures($id, $daytype->id)
+               "departures" => get_stop_chrono_departures($id, $daytype->id)
            );
            $departures[] = $temp;
        }
-       $app->render('stops/stop.tpl', array(
+       $app->render('stops/chrono_stop.tpl', array(
            "departures"=>$departures,
            "stop_id"=>$id,
+           "stop_name"=>  get_stop_name($id)
+       ));
+   });
+   $app->get('/all/:id', function($id) use($app) {
+       $departures = array();
+       $lines_and_dirs = get_lines_and_directions_no_from_stop($id);
+       
+       foreach($lines_and_dirs as $line) {
+           $tmp = get_departures($line["line"], $line["dirnumber"], $id);
+           $departures[] = $tmp;
+       }
+       
+       $app->render('stops/all_stop.tpl', array(
+           "departures" => $departures,
+           "stop_id" => $id,
            "stop_name"=>  get_stop_name($id)
        ));
    });

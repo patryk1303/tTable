@@ -101,6 +101,12 @@ function get_lines_from_stop($stop_id) {
     return R::getAll("Select Distinct Group_Concat(Distinct departures.line Order By departures.line*1 Separator ' ') As `lines` From departures Where departures.stopid = " . $stop_id);
 }
 
+function get_lines_and_directions_no_from_stop($stop_id) {
+    return R::getAll("Select Distinct departures.line, departures.dirnumber From departures Where departures.stopid = :stopid Order By departures.line * 1, departures.dirnumber", array(
+        ":stopid" => $stop_id
+    ));
+}
+
 function get_stops_filter($filter = '') {
     $filter = $filter == '' ? null : '%' . $filter . '%';
     if($filter != null) {
@@ -113,7 +119,7 @@ function get_stops_filter($filter = '') {
     return $stops;
 }
 
-function get_stop_departures($stop_id,$daytype_id) {
+function get_stop_chrono_departures($stop_id,$daytype_id) {
     return R::getAll("Select departures.line, departures.hour, departures.min, departures.tripnumber, departures.dirnumber, directions.name as directionname From departures Inner Join directions On directions.dirnumber = departures.dirnumber And directions.line = departures.line Where departures.stopid = :stop_id And departures.daytype = :daytype_id Order By departures.hour, departures.min",array(
         ":stop_id" => $stop_id,
 	":daytype_id" => $daytype_id
