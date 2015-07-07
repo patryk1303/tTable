@@ -5,10 +5,10 @@
     <head>
         <title>rJazdy</title>
 {*        <link rel="stylesheet" href="{baseUrl}/css/temp.css">*}
-        <link rel="stylesheet" href="{baseUrl}/css/main.css">
-{*        <link rel="stylesheet" href="{baseUrl}/css/bootstrap.css">*}
-        <link rel="stylesheet" href="{baseUrl}/css/lavish-bootstrap.css">
+        <link rel="stylesheet" href="{baseUrl}/css/bootstrap.css">
+{*        <link rel="stylesheet" href="{baseUrl}/css/lavish-bootstrap.css">*}
 {*        <link rel="stylesheet" href="{baseUrl}/css/bootstrap-theme.css">*}
+        <link rel="stylesheet" href="{baseUrl}/css/main.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
     </head>
