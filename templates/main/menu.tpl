@@ -11,13 +11,8 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{siteUrl url='/stops'}">Przystanki</a></li>
-                <li class='divider'></li>
-				{foreach $lines as $line}
-					{if isset($line.line)}
-						<li><a href="{siteUrl url='/line/'}{$line.line}">{$line.line}</a></li>
-					{/if}
-				{/foreach}
+                <li><a href="{siteUrl url='/stops'}"><i class="fa fa-spoon"></i> Przystanki</a></li>
+                <li><a href="#" class="lines-show"><i class="fa fa-location-arrow"></i> Linie</a></li>
             </ul>
         </div>
     </div>

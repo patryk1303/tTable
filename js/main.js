@@ -17,3 +17,8 @@
 $('#buttonPrint').click(function() {
     window.print();
 });
+
+//lines modal
+$('.lines-show').on('click',function() {
+    $('#linesModal').modal();
+});
