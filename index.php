@@ -13,6 +13,14 @@ require_once 'config.php';
 require_once 'lib/db_func.php';
 require_once 'lib/departures.php';
 
+$lang = isset($_SESSION['lang'])?$_SESSION['lang']:'en';
+$lang_file = "lang/lang.$lang.php";
+if(file_exists($lang_file)) {
+    require_once $lang_file;
+} else {
+    require_once "lang/lang.en.php";
+}
+
 // application configuration
 $app = new \Slim\Slim(array(
     'view' => new \Slim\Views\Smarty(),
@@ -38,7 +46,6 @@ $view->parserExtensions = array(
 switch(DB_TYPE) {
     case 'sqlite':
         $file_path = dirname(__FILE__).'/db/'.DB_FILE;
-//        echo $file_path;
         if(!file_exists($file_path)) {
             touch($file_path);
         }

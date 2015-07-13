@@ -1,9 +1,9 @@
 <?php
 
-$app->hook('slim.before.dispatch', function() use ($view) {
+$app->hook('slim.before.dispatch', function() use ($view,$lang) {
 	$current_time = time();
 	$next_hour_time = $current_time + 3600;
-    $lines = R::findAll('lines', 'ORDER BY line*1');
+        $lines = R::findAll('lines', 'ORDER BY line*1');
 	if(count($lines) > 0) {
 		$view->getInstance()->assign('lines',$lines);
 	} else {
@@ -11,6 +11,7 @@ $app->hook('slim.before.dispatch', function() use ($view) {
 	}
 	$view->getInstance()->assign('current_time',$current_time);
 	$view->getInstance()->assign('next_hour_time',$next_hour_time);
+	$view->getInstance()->assign('lang',$lang);
 });
 
 $app->get('/', function() use ($app) {

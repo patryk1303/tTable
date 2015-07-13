@@ -7,7 +7,7 @@
     <div class="row">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h2>Przystanki</h2>
+                <h2>{$lang.stops}</h2>
             </div>
             <div class="panel-body">
                 {foreach $stops as $stop name=stops}

@@ -2,7 +2,7 @@
 {block name="content"}
    
     <div class="page-header">
-        <h1>Kierunki i przystanki linii {$line}</h1>
+        <h1>{$lang.dirs_and_stops} {$line}</h1>
     </div>
     
     <div class="row">

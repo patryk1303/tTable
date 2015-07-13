@@ -17,7 +17,33 @@
  */
 
 $lang = array(
-    "app_name"  => "tTable",
-    "stops"     => "Przystanki",
-    
+    //// version 0.1
+    // menu, commons
+    "stops"         => "Przystanki",
+    "lines"         => "Linie",
+    "line"          => "Linia",
+    "direction"     => "Kierunek",
+    "departure"     => "Odjazd",
+    "print"         => "Drukuj",
+    // home
+    "intro_text"    => "Rozkład jazdy komunikacji miejskiej.",
+    // stops view
+    "chrono_deps"   => "Odjazdy chronologicznie",
+    "all_deps"      => "Tabliczki przystankowe",
+    // trip
+    "trip_title"    => "Trasa wybranego kursu",
+    // chrono view
+    "chrono_title1" => "Odjazdy z przystanku",
+    "chrono_title2" => "chronologicznie",
+    "show_past"     => "Pokaż minione odjazdy",
+    // directions view
+    "dirs_and_stops"=> "Kierunki i przystanki linii",
+    // departures view
+    "signs"         => "Oznaczenia",
+    "valid_from"    => "Rozkład jazdy obowiązuje od",
+    "other_lines"   => "Inne linie odjeżdżające z tego przystanku",
+    "other_1"       => "Linia",
+    "other_2"       => "w kierunku",
+    "route"         => "Trasa przejazdu",
+    "req_stop"      => "Na żądanie"
 );

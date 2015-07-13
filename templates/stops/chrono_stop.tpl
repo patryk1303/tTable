@@ -5,9 +5,9 @@
     <div class="row">
         <div class="alert alert-info small-padding alert-print">
             <h3>
-                Odjazdy z przystanku
+                {$lang.chrono_title1}
                 <span class="red">{call stopname name1=$stop_name.name1 name2=$stop_name.name2 write_req=false}</span>
-                chronologicznie
+                {$lang.chrono_title2}
             </h3>
         </div>
     </div>
@@ -15,7 +15,7 @@
     <div class="row margin-bottom-10">
         <div class="col-xs-12">
             <button class="btn btn-default btn-block bigger" id="showHidePassed">
-                Pokaż minione odjazdy
+                {$lang.show_past}
             </button>
         </div>
     </div>
@@ -32,9 +32,9 @@
                     <div class="panel-body">
                         <table class="table table-condensed table-responsive table-hover">
                             <tr>
-                                <th>Linia</th>
-                                <th>Kierunek</th>
-                                <th>Odjazd</th>
+                                <th>{$lang.line}</th>
+                                <th>{$lang.direction}</th>
+                                <th>{$lang.departure}</th>
                             </tr>
                             {foreach $departure.departures as $row}
                             <tr class="trip-show {call check_minute hour=$row.hour minute=$row.min}"

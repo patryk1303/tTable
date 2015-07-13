@@ -12,7 +12,7 @@
                         <a href="{baseUrl}/line/{$line}">{$line}</a>
                     </big>
                     {if $stop_name.req}
-                        <br><small>na żądanie</small>
+                        <br><small>{$lang.req_stop}</small>
                     {/if}
                 </h1>
             </div>
@@ -24,7 +24,7 @@
                     </a>
                 </h2>
                 <span class="margin-left-30">
-                    <i class="glyphicon glyphicon-circle-arrow-right"></i>&nbsp;{$dir_name}
+                    <i class="fa fa-arrow-circle-right"></i>&nbsp;{$dir_name}
                 </span>
             </div>
 
@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="panel panel-warning panel-small-padding">
                     <div class="panel-heading">
-                        <h4>Oznaczenia</h4>
+                        <h4>{$lang.signs}</h4>
                     </div>
                     <div class="panel-body">
                         <ul>
@@ -88,7 +88,7 @@
             {/if}
             <div class="row">
                 <div class="col-xs-12 align-right">
-                    Rozkład jazdy obowiązuje od {$line_date}
+                    {$lang.valid_from} {$line_date}
                 </div>
             </div>
             {* other lines *}
@@ -96,7 +96,7 @@
             <div class="row hidden-print">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        Inne linie odjeżdżające z tego przystanku
+                        {$lang.other_lines}
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked nav-concerned nav-other-lines">
@@ -104,8 +104,8 @@
                             {if $other_line.line != $line or $other_line.dirnumber != $dir_no}
                             <li>
                                 <a href="{baseUrl}/departures/{$other_line.line}/{$other_line.dirnumber}/{$stop_id}">
-                                    Linia <strong class="red">{$other_line.line}</strong>
-                                    w kierunku <strong class="red">{$other_line.name}</strong>
+                                    {$lang.other_1} <strong class="red">{$other_line.line}</strong>
+                                    {$lang.other_2} <strong class="red">{$other_line.name}</strong>
                                 </a>
                             </li>
                             {/if}
@@ -120,7 +120,7 @@
             <div class="row">
                 <div class="col-xs-3">
                     <button class="btn btn-primary hidden-print" id="buttonPrint">
-                        <i class="glyphicon glyphicon-print"></i>&nbsp;Drukuj
+                        <i class="fa fa-print"></i>&nbsp;{$lang.print}
                     </button>
                 </div>
             </div>
@@ -129,7 +129,7 @@
         <div class="col-sm-4">
             {* place for route *}
             <div class="panel panel-info panel-route panel-small-padding">
-                <div class="panel-heading">Trasa przejazdu</div>
+                <div class="panel-heading">{$lang.route}</div>
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked nav-concerned">
                         {foreach $route as $stop}

@@ -9,7 +9,7 @@
                    <span aria-hidden="true">&times;</span>
                </button>
                <h4 class="modal-title" id="linesModalLabel">
-                   Linie
+                   {$lang.lines}
                </h4>
            </div>
            <div class="modal-body" id="linesModalBody">
