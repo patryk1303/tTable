@@ -22,18 +22,15 @@ function get_departures($line,$direction_number,$stop_id) {
         "dir_no" => $direction_number,
         "route" => get_line_route($line, $direction_number),
         "signs" => get_signs($line, $direction_number, $stop_id),
-        "direction_name" => "",
+        "direction_name" => get_direction_name($line, $direction_number),
+        "hours" => array(),
         "line_date" => "",
         "other_lines" => array(),
         "departures" => array()
     );
-    $data["direction_name"] = R::findOne("directions", " line = :line AND dirnumber = :dir_no",
-        array(
-            ":line" => $line,
-            ":dir_no" => $direction_number
-        ))->name;
     $daytypes = R::find("daytypes");
     $hours = get_departures_hours($line, $direction_number, $stop_id);
+    $data["hours"] = $hours;
     $data["other_lines"] = R::getAll("Select Distinct departures.dirnumber, directions.name, directions.line From departures Inner Join directions On directions.dirnumber = departures.dirnumber And directions.line = departures.line Where departures.stopid = :stopid Order By directions.line*1, departures.dirnumber",
         array(
             ":stopid" => $stop_id
@@ -59,5 +56,43 @@ function get_departures($line,$direction_number,$stop_id) {
         }
         $data["departures"][] = $temp;
     }
+    return $data;
+}
+
+function get_list_departures($line,$direction_number) {
+    $st = microtime(true);
+    $daytypes = R::find("daytypes");
+    $data = array(
+        "line" => $line,
+        "dir_no" => $direction_number,
+        "route" => get_line_route($line, $direction_number),
+        "signs" => get_signs_line_dir($line,$direction_number),
+        "daytypes" => $daytypes,
+        "direction_name" => get_direction_name($line,$direction_number),
+        "departures" => array(),
+        "numbers" => array(),
+        "counts" => array()
+    );
+
+    foreach($daytypes as $daytype) {
+        $numbers = get_trip_numbers($line,$direction_number,$daytype->id);
+        $data["numbers"][] = $numbers;
+        $tmp = array();
+
+        foreach($data["route"] as $route_row) {
+            $tmp[] = get_departures_for_stop($line,$direction_number,$route_row["stopid"],$daytype->id);
+        }
+        $count=0;
+        foreach ($tmp as $tmp_row) {
+            $count += count($tmp_row);
+        }
+
+        $data["departures"][] = $tmp;
+        $data["counts"][] = $count;
+    }
+    $end = microtime(true);
+
+    // echo ($end-$st);
+
     return $data;
 }

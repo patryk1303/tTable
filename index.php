@@ -1,5 +1,7 @@
 <?php
 
+ header("Access-Control-Allow-Origin: *");
+
 session_start();
 
 require_once 'lib/Slim/Slim.php';
@@ -12,8 +14,9 @@ require_once 'lib/rb.php';
 require_once 'config.php';
 require_once 'lib/db_func.php';
 require_once 'lib/departures.php';
+require_once 'lib/func.php';
 
-$lang = isset($_SESSION['lang'])?$_SESSION['lang']:'en';
+$lang = isset($_COOKIE['lang'])?$_COOKIE['lang']:'en';
 $lang_file = "lang/lang.$lang.php";
 if(file_exists($lang_file)) {
     require_once $lang_file;
@@ -32,6 +35,8 @@ date_default_timezone_set(TIMEZONE);
 $req = $app->getInstance()->request();
 $app->baseUrl = $req->getUrl() . $req->getRootUri();
 unset($req);
+$app->lang = check_cookie('lang','pl');
+$app->style = check_cookie('style','2');
 
 // templates engine configuration
 $view = $app->view();

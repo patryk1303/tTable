@@ -13,10 +13,10 @@
                </h4>
            </div>
            <div class="modal-body" id="linesModalBody">
-               <ul class="nav nav-pills">
+               <ul class="nav nav-pills bigger">
                {foreach $lines as $line}
                     {if isset($line.line)}
-                        <li><a href="{siteUrl url='/line/'}{$line.line}">{$line.line}</a></li>
+                        <li class="bigger"><a href="{siteUrl url='/line/'}{$line.line}">{$line.line}</a></li>
                     {/if}
                {/foreach}
                </ul>

@@ -202,7 +202,7 @@ th {
   *,
   *:before,
   *:after {
-    background: transparent !important;
+    /*background: transparent !important;*/
     color: #000 !important;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;

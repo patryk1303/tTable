@@ -1,8 +1,9 @@
 {extends file='index.tpl'}
 {block name="content"}
+    {$name = departures_style_|cat:$style}
     {foreach $departures as $departure}
-        {call departures_style_1
-        line=$departure.line stop_name=$stop_name stop_id=$stop_id dir_name=$departure.direction_name
+   		{call name=$name
+        line=$departure.line stop_name=$stop_name stop_id=$stop_id dir_name=$departure.direction_name hours=$departure.hours
         departures=$departure.departures signs=$departure.signs line_date=$departure.line_date other_lines=""
         dir_no=$departure.dir_no route=$departure.route print_button=false show_other_lines=false}
         <hr class="page-break">

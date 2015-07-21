@@ -25,6 +25,8 @@ $lang = array(
     "direction"     => "Direction",
     "departure"     => "Departure",
     "print"         => "Print",
+    "settings"      => "Settings",
+    "user_cookies"  => "This page uses cookies!",
     // home
     "intro_text"    => "Public transport timetables.",
     // stops view
@@ -45,5 +47,8 @@ $lang = array(
     "other_1"       => "Line",
     "other_2"       => "to",
     "route"         => "Route",
-    "req_stop"      => "On request"
+    "req_stop"      => "On request",
+    // settings
+    "lang"          => "Language",
+    "style"         => "Plaque style"
 );

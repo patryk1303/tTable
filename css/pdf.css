@@ -1,0 +1,36 @@
+h2 {
+	text-align: center;	
+}
+table {
+	border-collapse: collapse;
+	min-width: 100% !important;
+	width: 100%;
+}
+table tr td:first-child {
+	width: 300px !important;
+	min-width: 300px;
+	background-color: #dcd;
+	font-weight: 900;
+}
+table tr td:nth-child(n+2) {
+	min-width: 70px;
+}
+table td {
+	border: 1px solid black;
+}
+.sign {
+	display: block;
+}
+.sig {
+	float: left;
+	width: 30px;
+}
+.desc {
+	float: left;
+}
+.clear {
+	clear: both;
+}
+.break-page {
+	page-break-before: always;
+}

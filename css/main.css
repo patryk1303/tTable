@@ -135,9 +135,9 @@ h1.line {
     .hour_block {
       float: none; } }
   @media screen {
-    .hour_block a.passed {
+    a.passed {
       color: #c3c3c3 !important; }
-    .hour_block a.next {
+    a.next {
       color: green !important;
       font-weight: 700 !important; } }
 

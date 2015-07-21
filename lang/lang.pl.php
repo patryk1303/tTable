@@ -25,6 +25,8 @@ $lang = array(
     "direction"     => "Kierunek",
     "departure"     => "Odjazd",
     "print"         => "Drukuj",
+    "settings"      => "Ustawienia",
+    "user_cookies"  => "Ta strona korzysta z ciastek!",
     // home
     "intro_text"    => "Rozkład jazdy komunikacji miejskiej.",
     // stops view
@@ -45,5 +47,8 @@ $lang = array(
     "other_1"       => "Linia",
     "other_2"       => "w kierunku",
     "route"         => "Trasa przejazdu",
-    "req_stop"      => "Na żądanie"
+    "req_stop"      => "Na żądanie",
+    // settings
+    "lang"          => "Język",
+    "style"         => "Styl tabliczki"
 );

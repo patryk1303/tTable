@@ -48,10 +48,11 @@ h1.line {
     margin: 7px 4px;
     font-size: 1.4em;
     
-    @media screen {
+}
+
+@media screen {
 	a.passed {color: #c3c3c3 !important;}
 	a.next {color: green !important; font-weight: 700 !important;}
-    }
 }
 
 .departure-header {

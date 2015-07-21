@@ -1,5 +1,7 @@
 {include file='func.tpl'}
 {include file='departures/style_1.tpl'}
+{include file='departures/style_2.tpl'}
+{include file='departures/style_3.tpl'}
 <!doctype html>
 <html>
     <head>
@@ -27,6 +29,7 @@
             var URL = '{baseUrl}';
         </script>
         <script src="{baseUrl}/js/lib/jquery.js"></script>
+        <script src="{baseUrl}/js/lib/js.cookie-2.0.3.min.js"></script>
         <script src="{baseUrl}/js/lib/bootstrap.js"></script>
         <script src="{baseUrl}/js/main.js"></script>
         
@@ -37,10 +40,28 @@
             <footer id="footer" class="hidden-print">
                 &copy; 2015 Patryk Wychowaniec<br>
                 Stylizacje: <a href="https://github.com/ksiazkowicz">Maciej Janiszewski</a>
+
+                <div class="alert alert-warning alert-dismissible alert-cookies" role="alert">
+                  <button type="button" class="close close-cookies" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  {$lang.user_cookies}
+                </div>
             </footer>
         
         </div>
+
+        <script>
+            $(document).ready(function() {
+                if(Cookies.get('cookie-msg') == 'true') {
+                    $('.alert-cookies').hide();
+                }
+
+                $('.close-cookies').on('click', function() {
+                    Cookies.set('cookie-msg', 'true');
+                });
+            });
+        </script>
         
         {include file='common/_lines_modal.tpl'}
+        {include file='common/_settings_modal.tpl'}
     </body>
 </html>

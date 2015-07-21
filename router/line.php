@@ -8,7 +8,7 @@ $app->group('/line', function() use ($app) {
     
     $app->get('/:line', function($line) use ($app) {
         $data = array();
-        $directions = R::findAll('directions', 'WHERE line = :line ORDER BY dirnumber', array(":line"=>$line));
+        $directions = get_line_directions($line);
         
         foreach ($directions as $direction) {
             $temp = array(

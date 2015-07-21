@@ -18,10 +18,11 @@
 
 //{siteUrl url='/trip/'}{$line}/{$dir_no}/{$stop_id}/{$departure_day.daytype_number}/{$minute.tripnumber}
 
-$app->get('/trip/:line/:dir_no/:stop_id/:daytype_id/:trip_no', function($line,$dir_no,$stop_id,$daytype_id,$trip_no) use($app) {
+$app->get('/trip/:line/:dir_no/:stop_id/:daytype_id/:trip_no(/:json)', function($line,$dir_no,$stop_id,$daytype_id,$trip_no,$json=0) use($app) {
     $trip = get_trip($line,$dir_no,$daytype_id,$trip_no);
-    
-    $app->render('api/trip.tpl', array("trip"=>$trip,"stop_id"=>$stop_id,"line"=>$line,"dir_no"=>$dir_no));
-    
-//    echo json_encode($trip);
+    if($json) {
+    	echo json_encode($trip);
+    } else {
+	    $app->render('api/trip.tpl', array("trip"=>$trip,"stop_id"=>$stop_id,"line"=>$line,"dir_no"=>$dir_no));
+    }
 });

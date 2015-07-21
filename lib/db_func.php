@@ -13,6 +13,26 @@ function get_line_route($line,$dir_number) {
     );
 }
 
+function get_line_directions($line) {
+    return R::findAll('directions', 'WHERE line = :line ORDER BY dirnumber', array(":line"=>$line));
+}
+
+function get_trip_numbers($line,$dir_number,$daytype_id) {
+    $ret = array();
+    $numbers = R::getAll("SELECT DISTINCT tripnumber FROM departures WHERE line=:line AND dirnumber=:dirno AND daytype=:daytype ORDER BY tripnumber",
+        array(
+            ":line" => $line,
+            ":dirno" => $dir_number,
+            ":daytype" => $daytype_id
+        )
+    );
+
+    foreach($numbers as $number) {
+        $ret[] = $number["tripnumber"];
+    }
+    return $ret;
+}
+
 function get_departures_hours($line,$dir_number,$stop_id) {
     $ret = array();
     $hours =  R::getAll("Select Distinct departures.hour From departures Where departures.line = :line And departures.dirnumber = :dir_number And departures.stopid = :stop_id Order By hour",
@@ -38,6 +58,28 @@ function get_departures_for_hour($line,$dir_number,$stop_id,$daytype_id,$hour) {
             ":daytype" => $daytype_id,
         )
     );
+}
+
+function get_departures_for_stop($line,$dir_number,$stop_id,$daytype_id) {
+    return R::getAll("Select Distinct concat(departures.hour,':',departures.min) as departure, departures.signs, departures.tripnumber From departures Where departures.line = :line And departures.dirnumber = :dir_number And departures.stopid = :stop_id And departures.daytype = :daytype Order By tripnumber",
+        array(
+            ":line" => $line,
+            ":dir_number" => $dir_number,
+            ":stop_id" => $stop_id,
+            ":daytype" => $daytype_id,
+        )
+    );
+}
+
+function get_all_departures_for_day_and_trip_no($line,$dir_number,$stop_id,$daytype_id,$trip_no) {
+    return R::getAll("Select Distinct CONCAT(departures.hour, ':', departures.min) as departure From departures Where departures.line = :line And departures.dirnumber = :dir_number And departures.stopid = :stop_id And departures.daytype = :daytype And departures.tripnumber = :tripno Order By min",
+        array(
+            ":line" => $line,
+            ":dir_number" => $dir_number,
+            ":stop_id" => $stop_id,
+            ":daytype" => $daytype_id,
+            ":tripno" => $trip_no
+    ));
 }
 
 function get_trip($line,$dir_number,$daytype_id,$trip_no) {
@@ -97,6 +139,30 @@ function get_signs($line,$dir_number,$stop_id) {
     return $current_signs;
 }
 
+function get_signs_line_dir($line,$dir_number) {
+    $signs_line_dir = R::getAll("Select Distinct signs.sign, signs.description From signs Where signs.line = :line And signs.dirnumber = :dir_number Order By sign",
+        array(
+            ":line" => $line,
+            ":dir_number" => $dir_number
+        )
+    );
+    
+    return $signs_line_dir;
+}
+
+function get_signs_for_trip($line,$dir_number,$trip_no,$daytype) {
+    $signs_line_dir = R::getAll("Select Distinct departures.signs From departures Where departures.line = :line And departures.dirnumber = :dir_no AND departures.tripnumber = :trip_number AND departures.daytype = :daytype",
+        array(
+            ":line" => $line,
+            ":dir_number" => $dir_number,
+            ":trip_number" => $trip_no,
+            ":daytype" => $daytype
+        )
+    );
+    
+    return $signs_line_dir;
+}
+
 function get_lines_from_stop($stop_id) {
     return R::getAll("Select Distinct Group_Concat(Distinct departures.line Order By departures.line*1 Separator ' ') As `lines` From departures Where departures.stopid = " . $stop_id);
 }
@@ -124,4 +190,12 @@ function get_stop_chrono_departures($stop_id,$daytype_id) {
         ":stop_id" => $stop_id,
 	":daytype_id" => $daytype_id
     ));
+}
+
+function get_direction_name($line, $direction_number) {
+    return R::findOne("directions", " line = :line AND dirnumber = :dir_no",
+        array(
+            ":line" => $line,
+            ":dir_no" => $direction_number
+        ))->name;
 }
