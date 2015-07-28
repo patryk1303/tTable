@@ -13,6 +13,20 @@ function get_line_route($line,$dir_number) {
     );
 }
 
+function get_line_route_wo_stops_names($line,$dir_number) {
+    $out = array();
+    $stops = R::getAll("Select routes.stopid From routes, stops Where routes.stopid = stops.id AND routes.line = :line AND routes.dirnuber = :dirno Order By routes.line, routes.dirnuber, routes.id",
+        array(
+            ":line" => $line,
+            ":dirno" => $dir_number
+        )
+    );
+    foreach($stops as $stop) {
+        $out[] = $stop["stopid"];
+    }
+    return $out;
+}
+
 function get_line_directions($line) {
     return R::findAll('directions', 'WHERE line = :line ORDER BY dirnumber', array(":line"=>$line));
 }

@@ -10,9 +10,9 @@ $app->group('/departures', function() use ($app) {
         require_once dirname(__FILE__).'/../lib/mpdf/mpdf.php';
         $data = get_list_departures($line,$direction);
 
-        // ob_start();
+        ob_start();
 
-        // $app->response->headers->set('Content-Type', 'application/pdf');
+        $app->response->headers->set('Content-Type', 'application/pdf');
         $app->render("departures_list.tpl", array(
             "daytypes" => $data["daytypes"],
             "numbers" => $data["numbers"],
@@ -22,13 +22,13 @@ $app->group('/departures', function() use ($app) {
             "counts" => $data["counts"]
         ));
 
-        // $html = ob_get_contents();
-        // ob_end_clean();
+        $html = ob_get_contents();
+        ob_end_clean();
 
-        // $pdf = new mPDF('', 'A4-L', '', '', 5, 5, 15, 15);
-        // $pdf->keep_table_proportions = true;
-        // $pdf->WriteHTML($html);
-        // $pdf->Output('odjazdy.pdf','I');
+        $pdf = new mPDF('', 'A4-L', '', '', 5, 5, 15, 15);
+        $pdf->keep_table_proportions = true;
+        $pdf->WriteHTML($html);
+        $pdf->Output('odjazdy.pdf','I');
 
     });
     

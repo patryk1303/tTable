@@ -16,9 +16,16 @@
  * limitations under the License.
  */
 
-$app->group('/api', function() use ($app) {
-    require 'trip.php';
-    require 'lines.php';
-    require 'departures.php';
-    require 'stops.php';
+//{siteUrl url='/trip/'}{$line}/{$dir_no}/{$stop_id}/{$departure_day.daytype_number}/{$minute.tripnumber}
+
+$app->get('/stops', function() use($app) {
+    $stops = R::getAll('SELECT * FROM stops ORDER BY name1,name2');
+	$lines_from_stops = array();
+	foreach($stops as $stop) {
+	   $lines_from_stops[] = get_lines_from_stop($stop["id"]);
+	}
+	echo json_encode(array(
+		"stops" => $stops,
+		"lines_from_stops" => $lines_from_stops
+	));
 });

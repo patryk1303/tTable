@@ -44,6 +44,7 @@
 			</table>
 		</div>
 
+		{if $signs|count}
 		<div class="row">
 			<h3>Oznaczenia</h3>
 			{foreach $signs as $sign}
@@ -52,6 +53,7 @@
 			</div>
 			{/foreach}
 		</div>
+		{/if}
 
 		<br class="break-page">
 		<pagebreak />

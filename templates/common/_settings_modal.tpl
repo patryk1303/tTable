@@ -45,9 +45,9 @@ role="dialog" aria-labelledby="settingsModalLabel">
             <div class="btn-group" role="group">
               {foreach $styles as $style}
                 <button type="button"
-                class="btn btn-style btn-default {if $style == $smarty.cookies.style}btn-success{/if}"
-                data-style="{$style}">
-                  {$style}
+                class="btn btn-style btn-default {if $style->number == $smarty.cookies.style}btn-success{/if}"
+                data-style="{$style->number}" data-container="body" data-image-url="{baseUrl}/img/styles/{$style->img}">
+                  {$style->name}
                 </button>
               {/foreach}
             </div>

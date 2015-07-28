@@ -10,6 +10,9 @@
         <a href="{siteUrl url='/stops'}" class="btn btn-default">
             <i class="fa fa-spoon"></i> {$lang.stops}
         </a>
+        <a href="#" class="settings-show btn btn-default">
+            <i class="fa fa-gears"></i> {$lang.settings}
+        </a>
     </p>
 </div>
 {/block}

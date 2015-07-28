@@ -19,7 +19,8 @@
 $app->group('/stops', function() use ($app) {
    $app->get('/', function() use($app) {
 //       $stops = R::findAll('stops', 'ORDER BY name1,name2');
-       $stops = get_stops_filter('');
+       // $stops = get_stops_filter('');
+      $stops = R::getAll('SELECT * FROM stops ORDER BY name1,name2');
        $lines_from_stops = array();
        foreach($stops as $stop) {
 //           $lines_from_stops[] = R::getAll("Select Distinct Group_Concat(Distinct departures.line Order By departures.line*1 Separator ' ') As `lines` From departures Where departures.stopid = " . $stop["id"]);
