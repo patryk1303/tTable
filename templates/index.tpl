@@ -2,6 +2,7 @@
 {include file='departures/style_1.tpl'}
 {include file='departures/style_2.tpl'}
 {include file='departures/style_3.tpl'}
+{include file='departures/style_4.tpl'}
 <!doctype html>
 <html>
     <head>
