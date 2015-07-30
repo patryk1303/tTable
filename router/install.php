@@ -25,7 +25,7 @@ $app->group('/install', function() use ($app) {
         foreach($stops as $stop) {
             $stopDB = R::dispense('stops');
             $stop = trim($stop);
-            $stop = explode('/',$stop);
+            $stop = explode('/',$stop,2);
             $count = count($stop);
             if($count == 1) { // has no name2
                 $index = 0;
@@ -127,7 +127,7 @@ $app->group('/install', function() use ($app) {
                     $signs_file = file("$line_dir/legenda_$directionNo");
                     foreach($signs_file as $sign) {
                         $signsDB = R::dispense('signs');
-                        $sign = explode(' - ', $sign);
+                        $sign = explode(' - ', $sign,2);
                         
                         $signsDB->sign = $sign[0];
                         $signsDB->description = $sign[1];
