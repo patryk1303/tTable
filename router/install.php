@@ -194,13 +194,14 @@ $app->group('/install', function() use ($app) {
 
                             $trip_number = 1;
                             foreach($departures as $departures_row) {
+                                $departures_temp = array();
                                 $stop_number = 0;
                                 foreach($departures_row as $departure) {
                                     //when departure exists
                                     if(strlen($departure) > 2) {
                                             $departure1 = explode(":", $departure);
                                             preg_match($min_regex,$departure1[1],$min);
-                                            $all_departures[] = array(
+                                            $departures_temp[] = array(
                                                 "daytype" => $daytypes[$j]->id,
                                                 "stopid" => getStopID1($stops_file[$stop_number]),
                                                 "dirno" => $directionNo,
@@ -214,11 +215,37 @@ $app->group('/install', function() use ($app) {
                                     $stop_number++;
                                 }
                                 $trip_number++;
+
+                                $stop_no = 0;
+                                $status = 0;
+                                foreach ($departures_temp as $departure_temp) {
+                                    if($stop_no == count($departures_temp) - 1) {
+                                        $status = 1;
+                                    } elseif($stop_no==0) {
+                                        $status = 2;
+                                    } else {
+                                        $status = 0;
+                                    }
+
+                                    $all_departures[] = array(
+                                        "daytype" => $departure_temp["daytype"],
+                                        "stopid" => $departure_temp["stopid"],
+                                        "dirno" => $departure_temp["dirno"],
+                                        "tripno" => $departure_temp["tripno"],
+                                        "hour" => $departure_temp["hour"],
+                                        "min" => $departure_temp["min"],
+                                        "signs" => $departure_temp["signs"],
+                                        "line" => $departure_temp["line"],
+                                        "status" => $status
+                                    );
+
+                                    $stop_no++;
+                                }
                             }
                         }
                     }
                 }
-                
+
                 $sql = "INSERT INTO `ttable`.`departures` (`id`, `daytype`, `stopid`, `dirnumber`, `tripnumber`, `hour`, `min`, `signs`, `line`, `status`) VALUES ";
                 foreach($all_departures as $departure) {
                     $daytype = $departure['daytype'];
@@ -229,7 +256,8 @@ $app->group('/install', function() use ($app) {
                     $min= $departure['min'];
                     $signs= $departure['signs'];
                     $line= $departure['line'];
-                    $sql .= "(NULL, '$daytype', '$stopid', '$dirno', '$tripno', '$hour', '$min', '$signs', '$line', 0), ";
+                    $status = $departure['status'];
+                    $sql .= "(NULL, '$daytype', '$stopid', '$dirno', '$tripno', '$hour', '$min', '$signs', '$line', $status), ";
                 }
                 $sql .= ";";
                 $sql = str_replace(", ;", ";", $sql);
