@@ -42,7 +42,7 @@
                     {if $departure_day.count}
                     <tr class="success panel-day-{$departure_day.daytype_number}">
                         <td class="text-center panel-heading" colspan="{{$columns}}">
-                            {$departure_day.daytype}
+                            <h4>{$departure_day.daytype}</h4>
                         </td>
                     </tr>
                     <tr>
