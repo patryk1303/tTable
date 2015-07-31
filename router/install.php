@@ -180,12 +180,12 @@ $app->group('/install', function() use ($app) {
                 $min_regex = "/([0-9][0-9])([a-zA-Z]*)/";
                 $directionsCount = count(file("$line_dir/kierunki"));
                 for($directionNo=1 ; $directionNo<=$directionsCount ; $directionNo++) {
+                    $stops_file = file("$line_dir/przystanki_$directionNo");
                     for($j=1;$j<=count($daytypes);++$j) {
                         $departures = array();
                         $departures_file_path = "$line_dir/$directionNo"."_$j";
                         if(file_exists($departures_file_path)) {
                             $departures_file = file($departures_file_path);
-                            $stops_file = file("$line_dir/przystanki_$directionNo");
                             foreach($departures_file as $departures_row) {
                                     $departures_row = preg_replace('~[\r\n]+~','', $departures_row);
                                     $departures[] = explode("\t",$departures_row);

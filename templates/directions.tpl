@@ -6,7 +6,7 @@
     </div>
     
     <div class="row">
-    {foreach $data as $row name=directions name=directions}
+    {foreach $data as $row name=directions}
         
         <div class="col-sm-6">
             <div class="panel panel-info">
