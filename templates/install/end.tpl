@@ -16,6 +16,7 @@
    <div class="row">
        <ol class="breadcrumb">
            <li>strona główna</li>
+           <li>ustawienia</li>
            <li>typy dni</li>
            <li>przystanki</li>
            <li>linie, kierunki, oznaczenia, trasy, odjazdy</li>

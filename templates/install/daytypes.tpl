@@ -11,12 +11,10 @@
     <div class="row">
        <ol class="breadcrumb">
            <li>strona główna</li>
+           <li>ustawienia</li>
            <li class="active">typy dni</li>
            <li>przystanki</li>
            <li>linie, kierunki, oznaczenia, trasy, odjazdy</li>
-{*           <li>oznaczenia</li>*}
-{*           <li>trasy</li>*}
-{*           <li>odjazdy</li>*}
            <li>koniec</li>
        </ol>
    </div>
