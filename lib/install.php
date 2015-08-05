@@ -94,7 +94,7 @@ function getStopID($name1,$name2) {
  */
 function getStopID1($full_stop_name) {
     global $polish_letters;
-    $stop = explode("/", $full_stop_name);
+    $stop = explode("/", $full_stop_name,2);
     $stop = array_map("trim",$stop);
     $stop[0] = str_replace(" - nż","",$stop[0]);
     $stop[0] = str_replace(" – nż","",$stop[0]);

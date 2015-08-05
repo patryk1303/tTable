@@ -76,8 +76,44 @@ limitations under the License.
 .current {
   font-weight: 900; }
 
+/*
+Copyright 2015 Patryk.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/* 
+    Created on : 2015-07-03, 00:22:40
+    Author     : Patryk
+*/
+.modal-content {
+  background-color: transparent;
+  box-shadow: none;
+  border: none; }
+  .modal-content .modal-header {
+    border-bottom: none; }
+    .modal-content .modal-header h4, .modal-content .modal-header button.close {
+      color: white;
+      text-shadow: 3px 3px 10px black; }
+    .modal-content .modal-header button.close {
+      opacity: 1; }
+      .modal-content .modal-header button.close:hover {
+        opacity: 0.5px; }
+  .modal-content .modal-body {
+    background-color: white;
+    border-radius: 7px; }
+
 body {
-  margin-top: 70px !important; }
+  margin-top: 70px !important; font-size: 18px; }
 
 #footer {
   border-top: 1px solid gray;
@@ -99,9 +135,9 @@ h1.line {
     .hour_block {
       float: none; } }
   @media screen {
-    .hour_block a.passed {
+    a.passed {
       color: #c3c3c3 !important; }
-    .hour_block a.next {
+    a.next {
       color: green !important;
       font-weight: 700 !important; } }
 
@@ -182,10 +218,19 @@ h1.line {
     .panel-heading-stop-daytype h4 a {
       padding: 10px 15px !important; }
 
+.row {
+  transition: background 0.3s linear; }
+  .row.stops {
+    padding: 3px 7px; }
+
+.row.hover:hover {
+  background: #d0b8e4; }
+
 @media print {
   body {
     margin-top: 0 !important;
-    font-size: 1em !important; }
+    font-size: 1em !important;
+    background-color: transparent !important; }
 
   .alert-print {
     padding: 2px !important; }
@@ -209,10 +254,12 @@ h1.line {
   a[href]:after {
     content: "" !important; }
 
-  body {
-    background-color: transparent !important; }
-
   .nav-concerned li a {
-    padding: 0 !important; } }
+    padding: 0 !important; }
+
+  hr.page-break {
+    page-break-after: always;
+    height: 0 !important;
+    border-width: 0 !important; } }
 
 /*# sourceMappingURL=main.css.map */

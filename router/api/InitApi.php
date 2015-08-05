@@ -18,4 +18,7 @@
 
 $app->group('/api', function() use ($app) {
     require 'trip.php';
+    require 'lines.php';
+    require 'departures.php';
+    require 'stops.php';
 });

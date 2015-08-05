@@ -18,6 +18,12 @@
 
 $app->group('/settings', function() use ($app) {
     $app->get('/', function() use ($app) {
-        
+        $langs = ["en","pl"];
+        $styles = ["1","2","3"];
+
+        $app->render('settings.tpl',array(
+        	"languages" => $langs,
+        	"styles" => $styles
+        ));
     });
 });

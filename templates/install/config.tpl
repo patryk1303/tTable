@@ -11,6 +11,17 @@
                 <table class="table">
                     <tr class="form-group">
                         <td>
+                            <label for="db_type">Typ bazy danych</label>
+                        </td>
+                        <td>
+                            <select name="db_type" id="db_type" class="selectpicker">
+                                <option value="mysql">MySQL</option>
+                                <option value="sqlite">SQLite</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>
                             <label for="db_host">Adres serwera</label>
                         </td>
                         <td>

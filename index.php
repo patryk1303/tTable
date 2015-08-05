@@ -1,5 +1,7 @@
 <?php
 
+ header("Access-Control-Allow-Origin: *");
+
 session_start();
 
 require_once 'lib/Slim/Slim.php';
@@ -11,7 +13,16 @@ require_once 'lib/Slim-Views/Smarty.php';
 require_once 'lib/rb.php';
 require_once 'config.php';
 require_once 'lib/db_func.php';
+require_once 'lib/departures.php';
+require_once 'lib/func.php';
 
+$lang = isset($_COOKIE['lang'])?$_COOKIE['lang']:'en';
+$lang_file = "lang/lang.$lang.php";
+if(file_exists($lang_file)) {
+    require_once $lang_file;
+} else {
+    require_once "lang/lang.en.php";
+}
 
 // application configuration
 $app = new \Slim\Slim(array(
@@ -19,10 +30,13 @@ $app = new \Slim\Slim(array(
     'debug' => true,
     'templates.path' => './templates'
 ));
+date_default_timezone_set(TIMEZONE);
 
 $req = $app->getInstance()->request();
 $app->baseUrl = $req->getUrl() . $req->getRootUri();
 unset($req);
+$app->lang = check_cookie('lang','pl');
+$app->style = check_cookie('style','2');
 
 // templates engine configuration
 $view = $app->view();
@@ -37,7 +51,6 @@ $view->parserExtensions = array(
 switch(DB_TYPE) {
     case 'sqlite':
         $file_path = dirname(__FILE__).'/db/'.DB_FILE;
-//        echo $file_path;
         if(!file_exists($file_path)) {
             touch($file_path);
         }

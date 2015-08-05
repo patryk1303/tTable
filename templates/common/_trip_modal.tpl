@@ -9,7 +9,7 @@
                    <span aria-hidden="true">&times;</span>
                </button>
                <h4 class="modal-title" id="tripModalLabel">
-                   Trasa wybranego kursu
+                   {$lang.trip_title}
                </h4>
            </div>
            <div class="modal-body" id="tripModalBody">
