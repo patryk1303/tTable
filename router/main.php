@@ -1,7 +1,7 @@
 <?php
 
 $app->hook('slim.before.dispatch', function() use ($view,$lang,$app) {
-	$langs = ["en","pl"];
+	$langs = array("en","pl");
     // $styles = ["1","2","3"];
     $styles = json_decode('[ { "number": "1", "name": "indeksowy", "img": "style_1.png" }, { "number": "2", "name": "poziomy", "img": "style_2.png" }, { "number": "3", "name": "pionowy", "img": "style_3.png" }, { "number": "4", "name": "przystankowy", "img": "style_4.png" } ]');
 	$current_time = time();
